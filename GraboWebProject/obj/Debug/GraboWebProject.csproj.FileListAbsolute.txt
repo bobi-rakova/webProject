@@ -5,3 +5,10 @@ D:\Wow\Learn ASP MVC\GraboWebProject\GraboWebProject\bin\EntityFramework.xml
 D:\Wow\Learn ASP MVC\GraboWebProject\GraboWebProject\obj\Debug\ResolveAssemblyReference.cache
 D:\Wow\Learn ASP MVC\GraboWebProject\GraboWebProject\obj\Debug\GraboWebProject.dll
 D:\Wow\Learn ASP MVC\GraboWebProject\GraboWebProject\obj\Debug\GraboWebProject.pdb
+D:\WebPro\webProject\GraboWebProject\bin\GraboWebProject.dll
+D:\WebPro\webProject\GraboWebProject\bin\GraboWebProject.pdb
+D:\WebPro\webProject\GraboWebProject\bin\EntityFramework.dll
+D:\WebPro\webProject\GraboWebProject\bin\EntityFramework.xml
+D:\WebPro\webProject\GraboWebProject\obj\Debug\ResolveAssemblyReference.cache
+D:\WebPro\webProject\GraboWebProject\obj\Debug\GraboWebProject.dll
+D:\WebPro\webProject\GraboWebProject\obj\Debug\GraboWebProject.pdb
