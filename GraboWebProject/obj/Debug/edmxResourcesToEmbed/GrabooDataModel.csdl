@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GrabooDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="GrabooDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Allergies" EntityType="GrabooDBModel.Allergy" />
+    <EntitySet Name="Ingredients" EntityType="GrabooDBModel.Ingredient" />
+    <EntitySet Name="NutritionElements" EntityType="GrabooDBModel.NutritionElement" />
+    <EntitySet Name="Products" EntityType="GrabooDBModel.Product" />
+    <EntitySet Name="Purchases" EntityType="GrabooDBModel.Purchase" />
+    <EntitySet Name="Users" EntityType="GrabooDBModel.User" />
+    <AssociationSet Name="FK_IngredientsAllergies" Association="GrabooDBModel.FK_IngredientsAllergies">
+      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End Role="Allergies" EntitySet="Allergies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAllergies" Association="GrabooDBModel.FK_UsersAllergies">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Allergies" EntitySet="Allergies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IngredientsNutritionElements" Association="GrabooDBModel.FK_IngredientsNutritionElements">
+      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End Role="NutritionElements" EntitySet="NutritionElements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsNutritionElements" Association="GrabooDBModel.FK_ProductsNutritionElements">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="NutritionElements" EntitySet="NutritionElements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsPurchases" Association="GrabooDBModel.FK_ProductsPurchases">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Purchases" EntitySet="Purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersPurchases" Association="GrabooDBModel.FK_UsersPurchases">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Purchases" EntitySet="Purchases" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Allergy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <Property Name="Ingredient_Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Ingredient" Relationship="GrabooDBModel.FK_IngredientsAllergies" FromRole="Allergies" ToRole="Ingredients" />
+    <NavigationProperty Name="User" Relationship="GrabooDBModel.FK_UsersAllergies" FromRole="Allergies" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Ingredient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Allergies" Relationship="GrabooDBModel.FK_IngredientsAllergies" FromRole="Ingredients" ToRole="Allergies" />
+    <NavigationProperty Name="NutritionElements" Relationship="GrabooDBModel.FK_IngredientsNutritionElements" FromRole="Ingredients" ToRole="NutritionElements" />
+  </EntityType>
+  <EntityType Name="NutritionElement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Id" Type="Int32" Nullable="false" />
+    <Property Name="Ingredient_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ingredient" Relationship="GrabooDBModel.FK_IngredientsNutritionElements" FromRole="NutritionElements" ToRole="Ingredients" />
+    <NavigationProperty Name="Product" Relationship="GrabooDBModel.FK_ProductsNutritionElements" FromRole="NutritionElements" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Producer" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Carbohydrates" Type="Int32" />
+    <Property Name="Proteins" Type="Int32" />
+    <Property Name="Fat" Type="Int32" />
+    <NavigationProperty Name="NutritionElements" Relationship="GrabooDBModel.FK_ProductsNutritionElements" FromRole="Products" ToRole="NutritionElements" />
+    <NavigationProperty Name="Purchases" Relationship="GrabooDBModel.FK_ProductsPurchases" FromRole="Products" ToRole="Purchases" />
+  </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" />
+    <Property Name="Place" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <Property Name="Product_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="GrabooDBModel.FK_ProductsPurchases" FromRole="Purchases" ToRole="Products" />
+    <NavigationProperty Name="User" Relationship="GrabooDBModel.FK_UsersPurchases" FromRole="Purchases" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="LastName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Allergies" Relationship="GrabooDBModel.FK_UsersAllergies" FromRole="Users" ToRole="Allergies" />
+    <NavigationProperty Name="Purchases" Relationship="GrabooDBModel.FK_UsersPurchases" FromRole="Users" ToRole="Purchases" />
+  </EntityType>
+  <Association Name="FK_IngredientsAllergies">
+    <End Role="Ingredients" Type="GrabooDBModel.Ingredient" Multiplicity="1" />
+    <End Role="Allergies" Type="GrabooDBModel.Allergy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Allergies">
+        <PropertyRef Name="Ingredient_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAllergies">
+    <End Role="Users" Type="GrabooDBModel.User" Multiplicity="1" />
+    <End Role="Allergies" Type="GrabooDBModel.Allergy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Allergies">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IngredientsNutritionElements">
+    <End Role="Ingredients" Type="GrabooDBModel.Ingredient" Multiplicity="1" />
+    <End Role="NutritionElements" Type="GrabooDBModel.NutritionElement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NutritionElements">
+        <PropertyRef Name="Ingredient_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsNutritionElements">
+    <End Role="Products" Type="GrabooDBModel.Product" Multiplicity="1" />
+    <End Role="NutritionElements" Type="GrabooDBModel.NutritionElement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NutritionElements">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsPurchases">
+    <End Role="Products" Type="GrabooDBModel.Product" Multiplicity="1" />
+    <End Role="Purchases" Type="GrabooDBModel.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Purchases">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersPurchases">
+    <End Role="Users" Type="GrabooDBModel.User" Multiplicity="1" />
+    <End Role="Purchases" Type="GrabooDBModel.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Purchases">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
