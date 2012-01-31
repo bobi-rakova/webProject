@@ -4,7 +4,7 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body {
-    background-color: #5c87b2;
+    background-color: #C4D75A;
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -102,15 +102,12 @@ header h1, #header h1 {
 
 #main {
     padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    border-radius: 4px 0 0 0;
-    -webkit-border-radius: 4px 0 0 0;
-    -moz-border-radius: 4px 0 0 0;
+    background-color: #F6F4F5;
+	box-shadow: 5px 3px 20px #DDEBAE;
 }
 
 footer, 
 #footer {
-    background-color: #fff;
     color: #999;
     padding: 10px 0;
     text-align: center;
@@ -125,7 +122,7 @@ footer,
 /* TAB MENU   
 ----------------------------------------------------------*/
 ul#menu {
-    border-bottom: 1px #5C87B2 solid;
+   /* border-bottom: 1px #5C87B2 solid; */
     padding: 0 0 2px;
     position: relative;
     margin: 0;
@@ -151,7 +148,7 @@ ul#menu li a {
     text-decoration: none;
     line-height: 2.8em;
     background-color: #e8eef4;
-    color: #034af3;
+    color: #888888;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
