@@ -1,48 +1,26 @@
-﻿@model IEnumerable<GraboWebProject.Product>
-
+﻿@model IEnumerable<GraboWebProject.Purchase>
 @{
     ViewBag.Title = "Home Page";
 }
-
-
 <h2>@ViewBag.Message</h2>
-<p>
-    JMUC ! 
-</p>
 
-<table>
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            Producer
-        </th>
-        <th></th>
-    </tr>
-
-@foreach ( var item in Model )
-{
-    <tr>
-        <td>
-            @Html.DisplayFor( modelItem => item.Name )
-        </td>
-        <td>
-            @Html.DisplayFor( modelItem => item.Description )
-        </td>
-        <td>
-            @Html.DisplayFor( modelItem => item.Producer )
-        </td>
-        <td>
-            @Html.ActionLink( "Edit Me", "Edit", new { id = item.Id } ) |
-            @Html.ActionLink( "Details", "Details", new { id = item.Id } ) |
-            @Html.ActionLink( "Delete", "Delete", new { id = item.Id } )
-        </td>
-    </tr>
-}
-
-</table>
+<ul>
+    @foreach ( var item in Model )
+    {
+        <li>
+            <h2>
+                @Html.DisplayFor( modelItem => item.Date.DayOfWeek ), 
+                @Html.DisplayFor( modelItem => item.Date.Day ).@Html.DisplayFor( modelItem => item.Date.Month ).@Html.DisplayFor( modelItem => item.Date.Year )
+            </h2>
+            <p>
+                @Html.DisplayFor( modelItem => item.Date.TimeOfDay.Hours ):@Html.DisplayFor( modelItem => item.Date.TimeOfDay.Seconds ) - got a 
+                
+                <i>@Html.DisplayFor( modelItem => item.Product.Name )</i> at 
+                <i>@Html.DisplayFor( modelItem => item.Place )</i> made by - 
+                @Html.DisplayFor( modelItem => item.Product.Description )
+                <i>@Html.DisplayFor( modelItem => item.Product.Producer )</i>
+            </p>
+        </li>
+    }
+</ul>
 

@@ -8,13 +8,16 @@ namespace GraboWebProject.Controllers
 {
     public class HomeController : Controller
     {
+        private int userId = 1;
         private GrabooDBEntities entities = new GrabooDBEntities();
 
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";
 
-            return View( entities.Products.ToList() );
+            var myPurchases = entities.Purchases.Where( x => x.User_Id == userId ).ToList();
+
+            return View( myPurchases );
         }
 
         public ActionResult About()
