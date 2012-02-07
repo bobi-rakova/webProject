@@ -1,5 +1,17 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model GraboWebProject.User
+@{
+    ViewBag.Title = "User Profile";
 }
+<h2>
+    <i>hello,</i> @Model.FirstName</h2>
+<p>
+    Use this page to define your profile. We're here to help you so the better you profile
+    the more we'll be able to guide you with more information about how the things you
+    consume every day impact your health.
+</p>
+    
+     @Html.ActionLink( "Personal Profile", "Edit", new { userId = Model.Id } )
+     @Html.ActionLink( "Health Profile", "HealthProfile", new { userId = Model.Id } )
 
-<h2>User Profile Index</h2>
+
+
