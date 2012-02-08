@@ -3,137 +3,249 @@
     ViewBag.Title = "Home Page";
 }
 <h2>@ViewBag.Message</h2>
-
-
 <!doctype html>
 <html>
-    <head>
-        <style type="text/css">
-            body { margin:0; padding:0; height:100%; }
-            
-            .upper-menu {width:960px;height:35px;background-color:green;margin-left: auto;margin-right: auto;}
-            .navigation {margin-left: auto;margin-right: auto;width:960px;background-color:yellow;height:1000px;}
-            .main {margin-left: auto;margin-right: auto;width:750px;}
-            
-            .image{float:left;text-align:center;height:200px;display:inline;margin-bottom:32px;margin-right:25px;margin-TOP:25px;}
-			.image img{height:200px;width:200px;position:relative;}
-            .tmp {display:inline;position: relative; background: "featured01.jpg"; width: 200px; height: 200px;}
-            .image_header{position: relative;bottom: 30px; left: 0px; width: 200px;font-weight:bold;
-                height:25px; font-weight: bold; color:#0b96d0;font-size:0.5em ;text-align:left;}
-     
-		
-
-            .button {float:left;margin-right:25px;display:inline;cursor: pointer;font-weight: bold;
-                font-size: 0.46em;color:#222222;border-style:solid;border-width:1px;
-                border-color:#222222;position:relative;width:30px;HEIGHT:30PX}
-            .button:hover {background-position: 0 -48px;}
-            .button:active {background-position: 0 top;position: relative;top: 1px;}
-           
-
-            .button2 {float:right;margin-right:25px;display:inline;cursor: pointer;
-                font-weight: bold;font-size: 0.46em;color:#222222;border-style:solid;border-width:1px;
-                border-color:#222222;position:relative;width:50px;HEIGHT:20PX}
-            .button2:hover {background-position: 0 -48px;}
-            .button2:active {background-position: 0 top;position: relative;top: 1px;}
-           
-
-            .line{color:#c9c9c9;width:750px;}
-            .chapters{margin-top:350px;width:750px;}
-        </style>
-    </head>
-    <body>
-
-        <div class="navigation">
-            <div class="upper-menu">
-            </div>
-           
-            <div class="main">
-                <div class="image">
-					<img src="1.jpg" >
-					<div class="tmp">
-                        <div class="image_header"><a href="">text</a>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-           
-                <div class="image">
-					<img src="1.jpg" >
-					<div class="tmp">
-                        <div class="image_header"><a href="">text</a>
-                        </div>
-                    </div>
-                    <div class="button">123</div>
-                    <div class="button">123</div>
-                    <div class="button">123</div>
-                </div>
-           
-            
-                <div class="image">
-					<img src="1.jpg" >
-					<div class="tmp">
-                        <div class="image_header"><a href="">text</a>
-                        </div>
-                    </div>
-                    <div class="button">123</div>
-                    <div class="button">123</div>
-                    <div class="button">123</div>
-                </div>
-            </div>
-            
-            <div class="chapters">
-                <div class="line" ><hr align="center" size=4 noshade></hr></div>
-                <div class="button2">123</div>
-                <div class="button2">123</div>
-                <div class="button2">123</div>
-                some text
-            </div>
-            
-  
-  @{  
-      
-      System.Collections.ArrayList dates = new System.Collections.ArrayList();
-      System.Collections.ArrayList udates = new System.Collections.ArrayList();
-   }
-   @foreach (var item in Model)
-   {
-        @dates.Add(item);
-        if (udates.Contains(item.Date.DayOfWeek))
+<head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style type="text/css">
+        body
         {
-          continue;
-        }
-        udates.Add(item.Date.DayOfWeek);
-                                                          
-   }
-<ul>
-
-    @foreach (var date in udates)
-    {
-    <li><h2>@date</h2></li>
-        foreach (var item in Model)
-    {
-        if (!item.Date.DayOfWeek.Equals(date))
-        {
-            continue;
+            margin: 0;
+            padding: 0;
+            height: 100%;
         }
         
-           
-            <p>
-                @Html.DisplayFor(modelItem => item.Date.TimeOfDay.Hours):@Html.DisplayFor(modelItem => item.Date.TimeOfDay.Seconds) - got a 
-                
-                <i>@Html.DisplayFor(modelItem => item.Product.Name)</i> at 
-                <i>@Html.DisplayFor(modelItem => item.Place)</i> made by - 
-                @Html.DisplayFor(modelItem => item.Product.Description)
-                <i>@Html.DisplayFor(modelItem => item.Product.Producer)</i>
-            </p>
-    
-    }
-    }
-</ul>
+        .upper-menu
+        {
+            width: 960px;
+            height: 35px;
+            background-color: green;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .navigation
+        {
+            margin-left: auto;
+            margin-right: auto;
+            width: 960px;
+            background-color: yellow;
+            height: 1000px;
+        }
+        .main
+        {
+            margin-left: auto;
+            margin-right: auto;
+            width: 750px;
+        }
+        
+        .image
+        {
+            float: left;
+            text-align: center;
+            height: 200px;
+            display: inline;
+            margin-bottom: 32px;
+            margin-right: 25px;
+            margin-top: 25px;
+        }
+        .image img
+        {
+            height: 200px;
+            width: 200px;
+            position: relative;
+        }
+        .tmp
+        {
+            display: inline;
+            position: relative;
+            background: "featured01.jpg";
+            width: 200px;
+            height: 200px;
+        }
+        .image_header
+        {
+            position: relative;
+            bottom: 30px;
+            left: 0px;
+            width: 200px;
+            font-weight: bold;
+            height: 25px;
+            font-weight: bold;
+            color: #0b96d0;
+            font-size: 0.5em;
+            text-align: left;
+        }
+        
+        
+        
+        .button
+        {
+            float: left;
+            margin-right: 25px;
+            display: inline;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.46em;
+            color: #222222;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #222222;
+            position: relative;
+            width: 30px;
+            height: 30PX;
+        }
+        .button:hover
+        {
+            background-position: 0 -48px;
+        }
+        .button:active
+        {
+            background-position: 0 top;
+            position: relative;
+            top: 1px;
+        }
+        
+        
+        .button2
+        {
+            float: right;
+            margin-right: 25px;
+            display: inline;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.46em;
+            color: #222222;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #222222;
+            position: relative;
+            width: 50px;
+            height: 20PX;
+        }
+        .button2:hover
+        {
+            background-position: 0 -48px;
+        }
+        .button2:active
+        {
+            background-position: 0 top;
+            position: relative;
+            top: 1px;
+        }
+        
+        
+        .line
+        {
+            color: #c9c9c9;
+            width: 750px;
+        }
+        .chapters
+        {
+            margin-top: 350px;
+            width: 750px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <div class="upper-menu">
         </div>
-        
-    </body>
-
+        <div class="main">
+            <div class="image">
+                <img src="1.jpg">
+                <div class="tmp">
+                    <div class="image_header">
+                        <a href="">text</a>
+                    </div>
+                </div>
+            </div>
+            <div class="image">
+                <img src="1.jpg">
+                <div class="tmp">
+                    <div class="image_header">
+                        <a href="">text</a>
+                    </div>
+                </div>
+                <div class="button" >
+                    123</div>
+                <div class="button" >
+                    123</div>
+                <div class="button">
+                    123</div>
+            </div>
+            <div class="image">
+                <img src="1.jpg">
+                <div class="tmp">
+                    <div class="image_header">
+                        <a href="">text</a>
+                    </div>
+                </div>
+                <div class="button">
+                    123</div>
+                <div class="button">
+                    123</div>
+                <div class="button">
+                    123</div>
+            </div>
+        </div>
+        <div class="chapters">
+            <div class="line">
+                <hr align="center" size="4" noshade></hr>
+            </div>
+            <div class="button2" >
+                123</div>
+            <div class="button2" id="b2">
+                123</div>
+            <div class="button2" id="b1">
+                123</div>
+            some text
+        </div>
+        @{  
+      
+            System.Collections.ArrayList dates = new System.Collections.ArrayList();
+            System.Collections.ArrayList udates = new System.Collections.ArrayList();
+            
+        }
+        @foreach (var item in Model)
+        {
+            @dates.Add(item);
+                            if (udates.Contains(item.Date.Date))
+                            {
+                                continue;
+                            }
+                            udates.Add(item.Date.Date);
+        }
+        <ul id="list1" style="display:none">
+            @foreach (var date in udates)
+            {
+                <li>
+                    <h2>@date</h2>
+                </li>
+                foreach (var item in Model)
+                {
+                    if (!item.Date.Date.Equals(date))
+                    {
+                        continue;
+                    }     
+                <p>
+                    @Html.DisplayFor(modelItem => item.Date.TimeOfDay.Hours):@Html.DisplayFor(modelItem => item.Date.TimeOfDay.Seconds)
+                    - got a <i>@Html.DisplayFor(modelItem => item.Product.Name)</i> at <i>@Html.DisplayFor(modelItem => item.Place)</i>
+                    made by -
+                    @Html.DisplayFor(modelItem => item.Product.Description)
+                    <i>@Html.DisplayFor(modelItem => item.Product.Producer)</i>
+                </p>
+                }
+            }
+        </ul>
+       
+    </div>
+    
+    <script>
+        $("#b1").click(function () {
+            $("#list1").show();
+        });
+    
+    </script>
+    
+</body>
 </html>
-
