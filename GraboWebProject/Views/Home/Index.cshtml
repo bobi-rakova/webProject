@@ -18,7 +18,7 @@
         .upper-menu
         {
             width: 960px;
-            height: 35px;
+            height: 80px;
             background-color: green;
             margin-left: auto;
             margin-right: auto;
@@ -42,7 +42,8 @@
         {
             float: left;
             text-align: center;
-            height: 200px;
+            height: 233px;
+            width: 233px;
             display: inline;
             margin-bottom: 32px;
             margin-right: 25px;
@@ -50,15 +51,15 @@
         }
         .image img
         {
-            height: 200px;
-            width: 200px;
+            cursor: pointer;
+            height: 233px;
+            width: 233px;
             position: relative;
+            top: 0px;
         }
         .tmp
         {
-            display: inline;
             position: relative;
-            background: "featured01.jpg";
             width: 200px;
             height: 200px;
         }
@@ -76,51 +77,56 @@
             text-align: left;
         }
         
-        
-        
         .button
         {
             float: left;
-            margin-right: 25px;
+            margin-right: 10px;
+            top: 43px;
+            position: relative;
             display: inline;
             cursor: pointer;
             font-weight: bold;
             font-size: 0.46em;
             color: #222222;
             border-style: solid;
-            border-width: 1px;
+            border-width: 0px;
             border-color: #222222;
-            position: relative;
-            width: 30px;
-            height: 30PX;
+            width: 71px;
+            height: 71px;
         }
         .button:hover
         {
-            background-position: 0 -48px;
+            background-position: 11 top;
         }
         .button:active
         {
-            background-position: 0 top;
+            background-position: 11 top;
             position: relative;
-            top: 1px;
+            top: 40px;
         }
         
+        .button img
+        {
+            width: 71px;
+            height: 71px;
+            position: relative;
+        }
         
         .button2
         {
             float: right;
-            margin-right: 25px;
+            margin-right: 8px;
             display: inline;
             cursor: pointer;
             font-weight: bold;
             font-size: 0.46em;
             color: #222222;
             border-style: solid;
-            border-width: 1px;
+            border-width: 0px;
             border-color: #222222;
             position: relative;
-            width: 50px;
-            height: 20PX;
+            width: 90px;
+            height: 26px;
         }
         .button2:hover
         {
@@ -133,119 +139,144 @@
             top: 1px;
         }
         
+        .button2 img
+        {
+            width: 90px;
+            height: 26px;
+            position: relative;
+        }
         
         .line
         {
             color: #c9c9c9;
             width: 750px;
         }
+        
         .chapters
         {
-            margin-top: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 400px;
             width: 750px;
+        }
+        
+        #bla
+        {
+            margin-left: 10px;
+            font-size: large;
+            color: Gray;
+        }
+        
+        #header
+        {
+            font-size: xx-large;
+            font-style: oblique;
+            color: White;
+            margin-left: 5px;
+            width: 100px;
+        }
+        #search
+        {
+            float: right;
+            height: 10px;
         }
     </style>
 </head>
 <body>
     <div class="navigation">
         <div class="upper-menu">
+            <div id="header">
+                eat</div>
+            <div id="search">
+                <form action="" method="get">
+                <input type="text" value="Search">
+                <input type="submit" value="Go">
+                </form>
+            </div>
         </div>
         <div class="main">
             <div class="image">
-                <img src="1.jpg">
-                <div class="tmp">
-                    <div class="image_header">
-                        <a href="">text</a>
-                    </div>
-                </div>
+                <img src="/Content/userProfile.png">
             </div>
             <div class="image">
-                <img src="1.jpg">
                 <div class="tmp">
-                    <div class="image_header">
-                        <a href="">text</a>
-                    </div>
+                    <img src="/Content/searchProduct.png">
                 </div>
-                <div class="button" >
-                    123</div>
-                <div class="button" >
-                    123</div>
                 <div class="button">
-                    123</div>
+                    <img src="/Content/searchYours.png"></div>
+                <div class="button">
+                    <img src="/Content/searchAll.png"></div>
+                <div class="button" style="margin-right: 0px">
+                    <img src="/Content/searchEmpty.png"></div>
             </div>
-            <div class="image">
-                <img src="1.jpg">
+            <div class="image" style="margin-right: 0px">
                 <div class="tmp">
-                    <div class="image_header">
-                        <a href="">text</a>
-                    </div>
+                    <img src="/Content/statistics.png">
                 </div>
                 <div class="button">
-                    123</div>
+                    <img src="/Content/statisticsToday.png"></div>
                 <div class="button">
-                    123</div>
-                <div class="button">
-                    123</div>
+                    <img src="/Content/statisticsWeek.png"></div>
+                <div class="button" style="margin-right: 0px">
+                    <img src="/Content/statisticsMonth.png"></div>
             </div>
         </div>
         <div class="chapters">
             <div class="line">
-                <hr align="center" size="4" noshade></hr>
+                <hr align="center" size="2" noshade></hr>
             </div>
-            <div class="button2" >
-                123</div>
+            <div class="button2">
+                <img src="/Content/productsLastSeven.png"></div>
             <div class="button2" id="b2">
-                123</div>
+                <img src="/Content/productsYesterday.png"></div>
             <div class="button2" id="b1">
-                123</div>
-            some text
-        </div>
-        @{  
+                <img src="/Content/productsToday.png"></div>
+            <div id="bla">
+                Items bought</div>
+            @{  
       
-            System.Collections.ArrayList dates = new System.Collections.ArrayList();
-            System.Collections.ArrayList udates = new System.Collections.ArrayList();
+                System.Collections.ArrayList dates = new System.Collections.ArrayList();
+                System.Collections.ArrayList udates = new System.Collections.ArrayList();
             
-        }
-        @foreach (var item in Model)
-        {
-            @dates.Add(item);
-                            if (udates.Contains(item.Date.Date))
-                            {
-                                continue;
-                            }
-                            udates.Add(item.Date.Date);
-        }
-        <ul id="list1" style="display:none">
-            @foreach (var date in udates)
-            {
-                <li>
-                    <h2>@date</h2>
-                </li>
-                foreach (var item in Model)
-                {
-                    if (!item.Date.Date.Equals(date))
-                    {
-                        continue;
-                    }     
-                <p>
-                    @Html.DisplayFor(modelItem => item.Date.TimeOfDay.Hours):@Html.DisplayFor(modelItem => item.Date.TimeOfDay.Seconds)
-                    - got a <i>@Html.DisplayFor(modelItem => item.Product.Name)</i> at <i>@Html.DisplayFor(modelItem => item.Place)</i>
-                    made by -
-                    @Html.DisplayFor(modelItem => item.Product.Description)
-                    <i>@Html.DisplayFor(modelItem => item.Product.Producer)</i>
-                </p>
-                }
             }
-        </ul>
-       
+            @foreach (var item in Model)
+            {
+                @dates.Add(item);
+                                if (udates.Contains(item.Date.Date))
+                                {
+                                    continue;
+                                }
+                                udates.Add(item.Date.Date);
+            }
+            <ul id="list1" style="display: none">
+                @foreach (var date in udates)
+                {
+                    <li>
+                        <h2>@date</h2>
+                    </li>
+                    foreach (var item in Model)
+                    {
+                        if (!item.Date.Date.Equals(date))
+                        {
+                            continue;
+                        }     
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Date.TimeOfDay.Hours):@Html.DisplayFor(modelItem => item.Date.TimeOfDay.Seconds)
+                        - got a <i>@Html.DisplayFor(modelItem => item.Product.Name)</i> at <i>@Html.DisplayFor(modelItem => item.Place)</i>
+                        made by -
+                        @Html.DisplayFor(modelItem => item.Product.Description)
+                        <i>@Html.DisplayFor(modelItem => item.Product.Producer)</i>
+                    </p>
+                    }
+                }
+            </ul>
+        </div>
+        <script>
+            $("#b1").click(function () {
+                $("#list1").show();
+            });
+    
+        </script>
     </div>
-    
-    <script>
-        $("#b1").click(function () {
-            $("#list1").show();
-        });
-    
-    </script>
-    
 </body>
 </html>
