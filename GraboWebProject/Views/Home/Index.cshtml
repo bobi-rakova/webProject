@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<h2>@ViewBag.Message</h2>
 <!doctype html>
 <html>
 <head>
@@ -15,22 +14,6 @@
             height: 100%;
         }
         
-        .upper-menu
-        {
-            width: 960px;
-            height: 80px;
-            background-color: green;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .navigation
-        {
-            margin-left: auto;
-            margin-right: auto;
-            width: 960px;
-            background-color: yellow;
-            height: 1000px;
-        }
         .main
         {
             margin-left: auto;
@@ -174,112 +157,160 @@
             color: White;
             margin-left: 5px;
             width: 100px;
+            position: absolute;
+            top: 10px;
         }
         #search
         {
+            position: absolute;
+            top: 10px;
+            right: 200px;
             float: right;
             height: 10px;
+           
         }
-        
     </style>
+    <script type="text/javascript">
+
+        
+        function f(txt) {
+            
+            var lis = document.getElementsByClassName("temp");
+            for (var i = 0; i < lis.length; i++) {
+                var tmp = lis[i].parentNode;
+                tmp.style.display = "inline";
+            }
+            for (var i = 0; i < lis.length; i++) {
+                var a = (lis[i].parentNode.innerText);
+              
+                if (! a.match(txt)) {
+                    
+                    var tmp = lis[i].parentNode;
+                    var tmp2 = tmp.parentNode;
+                    tmp.style.display = "none";
+                    //lis = document.getElementsByClassName("temp");
+                    //i--;
+
+                }
+            }
+
+        }
+
+    </script>
 </head>
 <body>
-    
-    <div class="navigation">
-        <div class="upper-menu">
-            <div id="header">
-                eat</div>
-            <div id="search">
-                <form action="" method="get">
-                <input type="text" value="Search">
-                <input type="submit" value="Go">
-                </form>
-            </div>
-        </div>
-        <div class="main">
-            <div class="image">
-             @Html.ActionImage("Index", "UserProfile", "/Content/userProfile.png", "")
-            </div>
-            <div class="image">
-                <div class="tmp">
-                @Html.ActionImage("Index", "Search", "/Content/searchProduct.png", "")
-                </div>
-                <div class="button">
-                    <img src="/Content/searchYours.png"></div>
-                <div class="button">
-                    <img src="/Content/searchAll.png"></div>
-                <div class="button" style="margin-right: 0px">
-                    <img src="/Content/searchEmpty.png"></div>
-            </div>
-            <div class="image" style="margin-right: 0px">
-                <div class="tmp">
-                    @Html.ActionImage("Index", "Statistics", "/Content/statistics.png", "")
-                </div>
-                <div class="button">
-                    <img src="/Content/statisticsToday.png"></div>
-                <div class="button">
-                    <img src="/Content/statisticsWeek.png"></div>
-                <div class="button" style="margin-right: 0px">
-                    <img src="/Content/statisticsMonth.png"></div>
-                    
-            </div>
-        </div>
-        <div class="chapters">
-            <div class="line">
-                <hr align="center" size="2" noshade></hr>
-            </div>
-            <div class="button2">
-                <img src="/Content/productsLastSeven.png"></div>
-            <div class="button2" id="b2">
-                <img src="/Content/productsYesterday.png"></div>
-            <div class="button2" id="b1">
-                <img src="/Content/productsToday.png"></div>
-            <div id="bla">
-                Items bought</div>
-            @{  
-      
-                System.Collections.ArrayList dates = new System.Collections.ArrayList();
-                System.Collections.ArrayList udates = new System.Collections.ArrayList();
-            
-            }
-            @foreach (var item in Model)
-            {
-                @dates.Add(item);
-                                if (udates.Contains(item.Date.Date))
-                                {
-                                    continue;
-                                }
-                                udates.Add(item.Date.Date);
-            }
-            <ul id="list1" style="display: none">
-                @foreach (var date in udates)
-                {
-                    <li>
-                        <h2>@date</h2>
-                    </li>
-                    foreach (var item in Model)
-                    {
-                        if (!item.Date.Date.Equals(date))
-                        {
-                            continue;
-                        }     
-                    <p>
-                        @Html.DisplayFor(modelItem => item.Date.TimeOfDay.Hours):@Html.DisplayFor(modelItem => item.Date.TimeOfDay.Seconds)
-                        - got a <i>@Html.DisplayFor(modelItem => item.Product.Name)</i> at <i>@Html.DisplayFor(modelItem => item.Place)</i>
-                        made by -
-                        @Html.DisplayFor(modelItem => item.Product.Description)
-                        <i>@Html.DisplayFor(modelItem => item.Product.Producer)</i>
-                    </p>
-                    }
-                }
-            </ul>
-        </div>
-        <script>
-            $("#b1").click(function () {
-                $("#list1").show();
-            });
-    
-        </script>
+    <div id="header">
+        eat</div>
+    <div id="search">
+        <form action="" method="get">
+        <input type="text" value="Search">
+        <input type="submit" value="Go">
+        </form>
     </div>
+    <div class="main">
+        <div class="image">
+            @Html.ActionImage("Index", "UserProfile", "/Content/userProfile.png", "")
+        </div>
+        <div class="image">
+            <div class="tmp">
+                @Html.ActionImage("Index", "Search", "/Content/searchProduct.png", "")
+            </div>
+            <div class="button">
+                <img src="/Content/searchYours.png"></div>
+            <div class="button">
+                <img src="/Content/searchAll.png"></div>
+            <div class="button" style="margin-right: 0px">
+                <img src="/Content/searchEmpty.png"></div>
+        </div>
+        <div class="image" style="margin-right: 0px">
+            <div class="tmp">
+                @Html.ActionImage("Index", "Statistics", "/Content/statistics.png", "")
+            </div>
+            <div class="button">
+                <img src="/Content/statisticsToday.png"></div>
+            <div class="button">
+                <img src="/Content/statisticsWeek.png"></div>
+            <div class="button" style="margin-right: 0px">
+                <img src="/Content/statisticsMonth.png"></div>
+        </div>
+    </div>
+    <div class="chapters">
+        <div class="line">
+            <hr align="center" size="2" noshade></hr>
+        </div>
+        <div class="button2" id="b3">
+            <img src="/Content/productsLastSeven.png"></div>
+        <div class="button2" id="b2">
+            <img src="/Content/productsYesterday.png"></div>
+        <div class="button2" id="b1">
+            <img src="/Content/productsToday.png"></div>
+        <div id="bla">
+            Items bought</div>
+        @{  
+      
+            System.Collections.ArrayList dates = new System.Collections.ArrayList();
+            System.Collections.ArrayList udates = new System.Collections.ArrayList();
+            
+        }
+        @foreach (var item in Model)
+        {
+            @dates.Add(item);
+                            if (udates.Contains(item.Date.Date))
+                            {
+                                continue;
+                            }
+                            udates.Add(item.Date.Date);
+        }
+        <ul id="list1">
+            @foreach (var date in udates)
+            {
+                DateTime Now = DateTime.Now.Date.Date;
+                DateTime Yesterdat = Now.AddDays(-1).Date.Date;
+
+                string res = date.ToString();
+                if (Now.Equals(date))
+                {
+                    res = "Today";
+                }
+                if (Yesterdat.Equals(date))
+                {
+                    res = "Yesterday";
+                }
+                    
+                <li>
+                    <h2>@res</h2>
+                
+                @foreach (var item in Model)
+                {
+                    if (!item.Date.Date.Equals(date))
+                    {
+                        continue;
+                    }     
+                <p class="temp">
+                    @Html.DisplayFor(modelItem => item.Date.TimeOfDay.Hours):@Html.DisplayFor(modelItem => item.Date.TimeOfDay.Seconds)
+                    - got a <i>@Html.DisplayFor(modelItem => item.Product.Name)</i> at <i>@Html.DisplayFor(modelItem => item.Place)</i>
+                    made by -
+                    @Html.DisplayFor(modelItem => item.Product.Description)
+                    <i>@Html.DisplayFor(modelItem => item.Product.Producer)</i>
+                </p>
+                }
+                </li>
+            }
+        </ul>
+    </div>
+    
+    <script type="text/javascript">
+
+        $("#b1").click(function () {
+            f("Today");
+        });
+        $("#b2").click(function () {
+            f("Yesterday");
+        });
+        $("#b3").click(function () {
+            f(".");
+        });
+    </script>
+    
 </body>
 </html>

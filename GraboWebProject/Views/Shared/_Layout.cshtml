@@ -8,26 +8,11 @@
     <script src="@Url.Content( "~/Scripts/modernizr-1.7.min.js" )" type="text/javascript"></script>
 </head>
 <body>
-    <div class="page">
-        <header>
-            <div id="title">
-                <h1>My MVC Application</h1>
-            </div>
-            <div id="logindisplay">
-                @Html.Partial( "_LogOnPartial" )
-            </div>
-            <nav>
-                <ul id="menu">
-                    <li>@Html.ActionLink( "Home", "Index", "Home" )</li>
-                    <li>@Html.ActionLink( "Statistics", "Index", "Statistics" )</li>
-                    <li>@Html.ActionLink( "User Profile", "Index", "UserProfile" )</li>
-                    <li>@Html.ActionLink( "Search", "Index", "Search" )</li>
-                    <li>@Html.ActionLink( "About", "About", "Home" )</li>
-                </ul>
-            </nav>
-        </header>
-        <section id="main">
-            @RenderBody()
+        <div class="navigation">
+        <div class="upper-menu">
+        </div>
+        @RenderBody()
+        </div>
         </section>
         <footer>
        <div class="cols">
@@ -58,6 +43,6 @@
         </section>
     </div>
     </footer>
-    </div>
+    
 </body>
 </html>

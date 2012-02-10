@@ -13,7 +13,7 @@ namespace GraboWebProject.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            
 
             var myPurchases = entities.Purchases.Where( x => x.User_Id == userId ).ToList();
 
