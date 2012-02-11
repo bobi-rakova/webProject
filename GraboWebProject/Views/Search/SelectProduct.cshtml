@@ -63,7 +63,10 @@
             margin-top: 40px;
             font-weight: bold;
         }
-
+        .home
+        {
+        	float: right;
+        }
         .producer-name
         {
             text-transform:capitalize;
@@ -100,6 +103,9 @@
     
     <div class="navigation">
         <div class="main">
+            <div class="home">
+                @Html.ActionImage("Index", "Statistics", "/Content/home.png", "")
+            </div>
             <div id="search">
                 <form action="./Find/" method="post">
                 <input type="text" value="Product" name="criteria" class="search-input">

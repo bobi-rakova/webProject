@@ -32,7 +32,10 @@
             margin-right: auto;
             width: 750px;
         }      
-
+        .home
+        {
+        	float: right;
+        }
         .search-input
         {
             width: 400px;
@@ -44,6 +47,9 @@
     
     <div class="navigation">
         <div class="main">
+            <div class="home">
+                @Html.ActionImage("Index", "Statistics", "/Content/home.png", "")
+            </div>
             <div id="search">
                 <form action="" method="post">
                 <input type="text" name="criteria" value="Product" class="search-input">
