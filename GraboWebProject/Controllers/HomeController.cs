@@ -16,6 +16,20 @@ namespace GraboWebProject.Controllers
             return View();
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult Create( User user )
+        {
+            this.entities.AddToUsers( user );           
+            this.entities.SaveChanges();
+
+            return View();
+        }
+
         public ActionResult About()
         {
             return View();
