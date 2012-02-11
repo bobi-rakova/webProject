@@ -1,0 +1,80 @@
+﻿@model GraboWebProject.Product
+@{
+    ViewBag.Title = "AddProduct";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Create product</title>
+</head>
+<body>
+    <script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Product</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Producer)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Producer)
+                @Html.ValidationMessageFor(model => model.Producer)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Carbohydrates)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Carbohydrates)
+                @Html.ValidationMessageFor(model => model.Carbohydrates)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Proteins)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Proteins)
+                @Html.ValidationMessageFor(model => model.Proteins)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Fat)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Fat)
+                @Html.ValidationMessageFor(model => model.Fat)
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
