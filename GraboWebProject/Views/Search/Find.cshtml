@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<GraboWebProject.Product>
 
 @{
-    ViewBag.Title = "Product search";
+    ViewBag.Title = "Find";
 }
 
-<h2>Search for products</h2>
+<h2>Find</h2>
 <!doctype html>
 <html>
 <head>
@@ -15,7 +15,6 @@
             padding: 0;
             height: 100%;
         }
-
         p
         {
             text-indent:35px;            
@@ -29,51 +28,9 @@
         {
             margin-top: 40px;
         }
-
-        .product-statistic
+        .result
         {
-            margin-top: 40px;
-        }
-        .product-info
-        {
-            display: inline-block;
-            text-align:center;
-            margin-left: 100px;
-            font-weight: bold;
-            color: #CC9900;
-            font-family:sans-serif;
-            font-size:x-large;
-        }
-        .product
-        {
-            text-transform:capitalize;
-            color: #CC9900;
-            font-family:sans-serif;
-            font-size:x-large;            
-            margin-top: 40px;
-            font-weight: bold;
-        }
-        .product-name
-        {
-            text-transform:capitalize;
-            color: #CC9900;
-            display:inline-block;
-            font-family:sans-serif;
-            font-size:x-large;            
-            margin-top: 40px;
-            font-weight: bold;
-        }
-
-        .producer-name
-        {
-            text-transform:capitalize;
-            color: #CC9900;
-            float:right;
-            display: inline-block;
-            font-family:sans-serif;
-            font-size:x-large;            
-            margin-top: 40px;
-            font-weight: bold;
+        	margin-top: 40px;
         }
         .upper-menu
         {
@@ -128,13 +85,19 @@
             <div id="header">
                 eat</div>
             <div id="search">
-                <form action="Search/Find/" method="post">
+                <form action="" method="post">
                 <input type="text" name="criteria" value="Product" class="search-input">
                 <input type="submit" value="Search">
                 </form>
             </div>
         </div>
         <div class="main">
+            @foreach(var item in Model)
+            {
+                <div class="result">
+                    <a href="../SelectProduct?selected=@item.Name" name="name">@Html.DisplayFor(modelItem => item.Name)</a>
+                </div>
+            }
         </div>
-    <//div>
+    </div>
 </body>

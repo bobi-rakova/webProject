@@ -1,10 +1,10 @@
-﻿@model IEnumerable<GraboWebProject.Product>
+﻿@model GraboWebProject.Product
 
 @{
-    ViewBag.Title = "Product search";
+    ViewBag.Title = "SelectProduct";
 }
 
-<h2>Search for products</h2>
+<h2>SelectProduct</h2>
 <!doctype html>
 <html>
 <head>
@@ -128,13 +128,53 @@
             <div id="header">
                 eat</div>
             <div id="search">
-                <form action="Search/Find/" method="post">
-                <input type="text" name="criteria" value="Product" class="search-input">
+                <form action="./Find" method="post">
+                <input type="text" value="Product" name="criteria" class="search-input">
                 <input type="submit" value="Search">
                 </form>
             </div>
         </div>
         <div class="main">
+            <div class="product">
+                <div class="product-name" id="productName">
+                    @Html.DisplayFor(model => Model.Name)
+                </div>
+                <div class="producer-name" id="producerName">
+                    @Html.DisplayFor(model => Model.Producer)
+                </div>
+            </div>
+            <hr/>
+            <div class="product-statistic">
+                <div class="product-info">
+                    Carbohydrates
+                    <div id="carbs">
+                        @Html.DisplayFor(model => Model.Carbohydrates)g
+                    </div>
+                </div>
+                <div class="product-info">
+                    Proteins
+                    <div id="proteins">
+                        @Html.DisplayFor(model => Model.Proteins)g
+                    </div>
+                </div>
+                <div class="product-info">
+                    Fat
+                    <div id="fat" >
+                        @Html.DisplayFor(model => Model.Fat)g
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div id="productDescription" class="top">
+                @{
+                    string[] lines = Regex.Split(Model.Description, "\\n+");
+                }
+                @foreach (var line in lines)
+                {
+                    <p>@line</p>
+                }
+            </div>
         </div>
-    <//div>
+    </div>
 </body>
+</html>
