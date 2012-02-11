@@ -15,20 +15,9 @@
             padding: 0;
             height: 100%;
         }
-        .upper-menu
-        {
-            width: 960px;
-            height: 80px;
-            background-color: green;
-            margin-left: auto;
-            margin-right: auto;
-        }
         .navigation
         {
-            margin-left: auto;
-            margin-right: auto;
             width: 960px;
-            background-color: yellow;
             height: 1000px;
         }
         .main
@@ -36,27 +25,16 @@
             margin-left: auto;
             margin-right: auto;
             width: 750px;
-        }
-        
-        
-        #header
-        {
-            font-size: xx-large;
-            font-style: oblique;
-            color: White;
-            margin-left: 5px;
-            width: 100px;
-        }
-
-        #search
-        {
-            float: right;
-            height: 10px;
-        }        
+        }     
 
         .search-input
         {
             width: 400px;
+        }
+        .form
+        {
+        	margin-left: auto;
+        	margin-right: auto;
         }
         
     </style>
@@ -64,15 +42,11 @@
 <body>
     
     <div class="navigation">
-        <div class="upper-menu">
-            <div id="search">
-                <form action="Search/Find/" method="post">
+        <div class="main">
+            <form action="Search/Find/" method="post">
                 <input type="text" name="criteria" value="Product" class="search-input">
                 <input type="submit" value="Search">
-                </form>
-            </div>
-        </div>
-        <div class="main">
+             </form>
         </div>
     <//div>
 </body>

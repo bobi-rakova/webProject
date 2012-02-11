@@ -75,20 +75,11 @@
             margin-top: 40px;
             font-weight: bold;
         }
-        .upper-menu
-        {
-            width: 960px;
-            height: 80px;
-            background-color: green;
-            margin-left: auto;
-            margin-right: auto;
-        }
         .navigation
         {
             margin-left: auto;
             margin-right: auto;
             width: 960px;
-            background-color: yellow;
             height: 1000px;
         }
         .main
@@ -96,23 +87,7 @@
             margin-left: auto;
             margin-right: auto;
             width: 750px;
-        }
-        
-        
-        #header
-        {
-            font-size: xx-large;
-            font-style: oblique;
-            color: White;
-            margin-left: 5px;
-            width: 100px;
-        }
-
-        #search
-        {
-            float: right;
-            height: 10px;
-        }        
+        }   
 
         .search-input
         {
@@ -124,17 +99,13 @@
 <body>
     
     <div class="navigation">
-        <div class="upper-menu">
-            <div id="header">
-                eat</div>
+        <div class="main">
             <div id="search">
                 <form action="./Find/" method="post">
                 <input type="text" value="Product" name="criteria" class="search-input">
                 <input type="submit" value="Search">
                 </form>
             </div>
-        </div>
-        <div class="main">
             <div class="product">
                 <div class="product-name" id="productName">
                     @Html.DisplayFor(model => Model.Name)
