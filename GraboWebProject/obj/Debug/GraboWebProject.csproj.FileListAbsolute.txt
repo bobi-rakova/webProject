@@ -19,3 +19,10 @@ D:\WebPro1\webProject\webProject\GraboWebProject\bin\EntityFramework.xml
 D:\WebPro1\webProject\webProject\GraboWebProject\obj\Debug\ResolveAssemblyReference.cache
 D:\WebPro1\webProject\webProject\GraboWebProject\obj\Debug\GraboWebProject.dll
 D:\WebPro1\webProject\webProject\GraboWebProject\obj\Debug\GraboWebProject.pdb
+C:\Users\HaNdyMaN\webProject\GraboWebProject\bin\GraboWebProject.dll
+C:\Users\HaNdyMaN\webProject\GraboWebProject\bin\GraboWebProject.pdb
+C:\Users\HaNdyMaN\webProject\GraboWebProject\bin\EntityFramework.dll
+C:\Users\HaNdyMaN\webProject\GraboWebProject\bin\EntityFramework.xml
+C:\Users\HaNdyMaN\webProject\GraboWebProject\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\HaNdyMaN\webProject\GraboWebProject\obj\Debug\GraboWebProject.dll
+C:\Users\HaNdyMaN\webProject\GraboWebProject\obj\Debug\GraboWebProject.pdb
