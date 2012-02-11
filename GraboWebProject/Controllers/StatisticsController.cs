@@ -8,12 +8,16 @@ namespace GraboWebProject.Controllers
 {
     public class StatisticsController : Controller
     {
+        private int userId = 1;
+        private GrabooDBEntities entities = new GrabooDBEntities();
+
         //
         // GET: /Statistics/
 
         public ActionResult Index()
         {
-            return View();
+            var myPurchases = entities.Purchases.Where( x => x.User_Id == userId ).ToList();
+            return View( myPurchases );
         }
 
     }

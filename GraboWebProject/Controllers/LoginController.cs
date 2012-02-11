@@ -6,21 +6,15 @@ using System.Web.Mvc;
 
 namespace GraboWebProject.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
-        private int userId = 1;
-        private GrabooDBEntities entities = new GrabooDBEntities();
+        //
+        // GET: /Login/
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
-        {
-            return View();
-        }
-
     }
-    
 }

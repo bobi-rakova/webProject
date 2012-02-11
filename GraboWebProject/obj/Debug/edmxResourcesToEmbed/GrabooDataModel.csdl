@@ -100,6 +100,9 @@
     <Property Name="Gender" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Allergies" Relationship="GrabooDBModel.FK_UsersAllergies" FromRole="Users" ToRole="Allergies" />
     <NavigationProperty Name="Purchases" Relationship="GrabooDBModel.FK_UsersPurchases" FromRole="Users" ToRole="Purchases" />
+    <Property Type="String" Name="Username" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_IngredientsAllergies">
     <End Role="Ingredients" Type="GrabooDBModel.Ingredient" Multiplicity="1" />

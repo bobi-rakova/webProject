@@ -88,6 +88,9 @@
     <Property Name="LastName" Type="nvarchar(max)" />
     <Property Name="Age" Type="int" />
     <Property Name="Gender" Type="nvarchar(max)" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_IngredientsAllergies">
     <End Role="Ingredients" Type="GrabooDBModel.Store.Ingredients" Multiplicity="1" />

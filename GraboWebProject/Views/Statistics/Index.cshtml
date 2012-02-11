@@ -1,5 +1,317 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model IEnumerable<GraboWebProject.Purchase>
+@{
+    ViewBag.Title = "Statistics Page";
 }
+<!doctype html>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style type="text/css">
+        body
+        {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        
+        .main
+        {
+            margin-left: auto;
+            margin-right: auto;
+            width: 750px;
+        }
+        
+        .image
+        {
+            float: left;
+            text-align: center;
+            height: 233px;
+            width: 233px;
+            display: inline;
+            margin-bottom: 32px;
+            margin-right: 25px;
+            margin-top: 25px;
+        }
+        .image img
+        {
+            cursor: pointer;
+            height: 233px;
+            width: 233px;
+            position: relative;
+            top: 0px;
+        }
+        .tmp
+        {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .image_header
+        {
+            position: relative;
+            bottom: 30px;
+            left: 0px;
+            width: 200px;
+            font-weight: bold;
+            height: 25px;
+            font-weight: bold;
+            color: #0b96d0;
+            font-size: 0.5em;
+            text-align: left;
+        }
+        
+        .button
+        {
+            float: left;
+            margin-right: 10px;
+            top: 43px;
+            position: relative;
+            display: inline;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.46em;
+            color: #222222;
+            border-style: solid;
+            border-width: 0px;
+            border-color: #222222;
+            width: 71px;
+            height: 71px;
+        }
+        .button:hover
+        {
+            background-position: 11 top;
+        }
+        .button:active
+        {
+            background-position: 11 top;
+            position: relative;
+            top: 40px;
+        }
+        
+        .button img
+        {
+            width: 71px;
+            height: 71px;
+            position: relative;
+        }
+        
+        .button2
+        {
+            float: right;
+            margin-right: 8px;
+            display: inline;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.46em;
+            color: #222222;
+            border-style: solid;
+            border-width: 0px;
+            border-color: #222222;
+            position: relative;
+            width: 90px;
+            height: 26px;
+        }
+        .button2:hover
+        {
+            background-position: 0 -48px;
+        }
+        .button2:active
+        {
+            background-position: 0 top;
+            position: relative;
+            top: 1px;
+        }
+        
+        .button2 img
+        {
+            width: 90px;
+            height: 26px;
+            position: relative;
+        }
+        
+        .line
+        {
+            color: #c9c9c9;
+            width: 750px;
+        }
+        
+        .chapters
+        {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 400px;
+            width: 750px;
+        }
+        
+        #bla
+        {
+            margin-left: 10px;
+            font-size: large;
+            color: Gray;
+        }
+        
+        #header
+        {
+            font-size: xx-large;
+            font-style: oblique;
+            color: White;
+            margin-left: 5px;
+            width: 100px;
+            position: absolute;
+            top: 10px;
+        }
+        #search
+        {
+            position: absolute;
+            top: 10px;
+            right: 200px;
+            float: right;
+            height: 10px;
+           
+        }
+    </style>
+    <script type="text/javascript">
 
-<h2>Statistics Index</h2>
+
+        function f(txt) {
+
+            var lis = document.getElementsByClassName("temp");
+            for (var i = 0; i < lis.length; i++) {
+                var tmp = lis[i].parentNode;
+                tmp.style.display = "inline";
+            }
+            for (var i = 0; i < lis.length; i++) {
+                var a = (lis[i].parentNode.innerText);
+
+                if (!a.match(txt)) {
+
+                    var tmp = lis[i].parentNode;
+                    var tmp2 = tmp.parentNode;
+                    tmp.style.display = "none";
+                    //lis = document.getElementsByClassName("temp");
+                    //i--;
+
+                }
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <div id="header">
+        eat</div>
+    <div id="search">
+        <form action="" method="get">
+        <input type="text" value="Search">
+        <input type="submit" value="Go">
+        </form>
+    </div>
+    <div class="main">
+        <div class="image">
+            @Html.ActionImage("Index", "UserProfile", "/Content/userProfile.png", "")
+        </div>
+        <div class="image">
+            <div class="tmp">
+                @Html.ActionImage("Index", "Search", "/Content/searchProduct.png", "")
+            </div>
+            <div class="button">
+                <img src="/Content/searchYours.png"></div>
+            <div class="button">
+                <img src="/Content/searchAll.png"></div>
+            <div class="button" style="margin-right: 0px">
+                <img src="/Content/searchEmpty.png"></div>
+        </div>
+        <div class="image" style="margin-right: 0px">
+            <div class="tmp">
+                @Html.ActionImage("Index", "Statistics", "/Content/statistics.png", "")
+            </div>
+            <div class="button">
+                <img src="/Content/statisticsToday.png"></div>
+            <div class="button">
+                <img src="/Content/statisticsWeek.png"></div>
+            <div class="button" style="margin-right: 0px">
+                <img src="/Content/statisticsMonth.png"></div>
+        </div>
+    </div>
+    <div class="chapters">
+        <div class="line">
+            <hr align="center" size="2" noshade></hr>
+        </div>
+        <div class="button2" id="b3">
+            <img src="/Content/productsLastSeven.png"></div>
+        <div class="button2" id="b2">
+            <img src="/Content/productsYesterday.png"></div>
+        <div class="button2" id="b1">
+            <img src="/Content/productsToday.png"></div>
+        <div id="bla">
+            Items bought</div>
+        @{  
+      
+            System.Collections.ArrayList dates = new System.Collections.ArrayList();
+            System.Collections.ArrayList udates = new System.Collections.ArrayList();
+            
+        }
+        @foreach (var item in Model)
+        {
+            @dates.Add(item);
+                            if (udates.Contains(item.Date.Date))
+                            {
+                                continue;
+                            }
+                            udates.Add(item.Date.Date);
+        }
+        <ul id="list1">
+            @foreach (var date in udates)
+            {
+                DateTime Now = DateTime.Now.Date.Date;
+                DateTime Yesterdat = Now.AddDays(-1).Date.Date;
+
+                string res = date.ToString();
+                if (Now.Equals(date))
+                {
+                    res = "Today";
+                }
+                if (Yesterdat.Equals(date))
+                {
+                    res = "Yesterday";
+                }
+                    
+                <li>
+                    <h2>@res</h2>
+                
+                @foreach (var item in Model)
+                {
+                    if (!item.Date.Date.Equals(date))
+                    {
+                        continue;
+                    }     
+                <p class="temp">
+                    @Html.DisplayFor(modelItem => item.Date.TimeOfDay.Hours):@Html.DisplayFor(modelItem => item.Date.TimeOfDay.Seconds)
+                    - got a <i>@Html.DisplayFor(modelItem => item.Product.Name)</i> at <i>@Html.DisplayFor(modelItem => item.Place)</i>
+                    made by -
+                    @Html.DisplayFor(modelItem => item.Product.Description)
+                    <i>@Html.DisplayFor(modelItem => item.Product.Producer)</i>
+                </p>
+                }
+                </li>
+            }
+        </ul>
+    </div>
+    
+    <script type="text/javascript">
+
+        $("#b1").click(function () {
+            f("Today");
+        });
+        $("#b2").click(function () {
+            f("Yesterday");
+        });
+        $("#b3").click(function () {
+            f(".");
+        });
+    </script>
+    
+</body>
+</html>
+
