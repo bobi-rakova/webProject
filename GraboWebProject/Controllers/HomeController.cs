@@ -79,7 +79,7 @@ namespace GraboWebProject.Controllers
                 //    return Redirect( returnUrl );
                 //}
 
-                List<User> present = entities.Users.Where(x => x.Username == model.UserName).ToList();
+                List<User> present = entities.Users.Where(x => x.Username == model.UserName && x.Password == model.Password).ToList();
 
                 if (present.Count == 1)
                 {
