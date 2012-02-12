@@ -73,6 +73,7 @@
           <Property Name="Carbohydrates" Type="int" />
           <Property Name="Proteins" Type="int" />
           <Property Name="Fat" Type="int" />
+          <Property Name="Image" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Purchases">
           <Key>
@@ -249,6 +250,7 @@
           <Property Name="Fat" Type="Int32" />
           <NavigationProperty Name="NutritionElements" Relationship="GrabooDBModel.FK_ProductsNutritionElements" FromRole="Products" ToRole="NutritionElements" />
           <NavigationProperty Name="Purchases" Relationship="GrabooDBModel.FK_ProductsPurchases" FromRole="Products" ToRole="Purchases" />
+          <Property Type="String" Name="Image" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Purchase">
           <Key>
@@ -372,7 +374,8 @@
             <ScalarProperty Name="Ingredient_Id" ColumnName="Ingredient_Id" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Products"><EntityTypeMapping TypeName="GrabooDBModel.Product"><MappingFragment StoreEntitySet="Products">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Description" ColumnName="Description" />
             <ScalarProperty Name="Producer" ColumnName="Producer" />

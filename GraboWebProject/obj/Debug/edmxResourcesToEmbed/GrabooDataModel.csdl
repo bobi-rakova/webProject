@@ -76,6 +76,7 @@
     <Property Name="Fat" Type="Int32" />
     <NavigationProperty Name="NutritionElements" Relationship="GrabooDBModel.FK_ProductsNutritionElements" FromRole="Products" ToRole="NutritionElements" />
     <NavigationProperty Name="Purchases" Relationship="GrabooDBModel.FK_ProductsPurchases" FromRole="Products" ToRole="Purchases" />
+    <Property Type="String" Name="Image" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Purchase">
     <Key>

@@ -68,6 +68,7 @@
     <Property Name="Carbohydrates" Type="int" />
     <Property Name="Proteins" Type="int" />
     <Property Name="Fat" Type="int" />
+    <Property Name="Image" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Purchases">
     <Key>

@@ -32,6 +32,7 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="GrabooDBModel.Product">
         <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
