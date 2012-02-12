@@ -48,10 +48,12 @@ namespace GraboWebProject.Controllers
         {
             return View();
         }
-
+          
         [HttpPost]
         public ActionResult CreatePurchase( Purchase purchase )
         {
+            User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
+            purchase.User_Id = user.Id;
             this.entities.AddToPurchases( purchase );
             this.entities.SaveChanges();
 
@@ -63,6 +65,7 @@ namespace GraboWebProject.Controllers
             var data = from product in this.entities.Products
                        select new 
                        {
+                           Id = product.Id,
                            Name = product.Name,
                            Producer = product.Producer,
                            Carbohydrates = product.Carbohydrates,

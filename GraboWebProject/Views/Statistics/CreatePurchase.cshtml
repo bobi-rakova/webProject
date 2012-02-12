@@ -15,7 +15,7 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Purchase</legend>
-
+          
         <div class="editor-label">
             @Html.LabelFor(model => model.Date)
         </div>
@@ -31,22 +31,8 @@
             @Html.EditorFor(model => model.Place)
             @Html.ValidationMessageFor(model => model.Place)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.User_Id)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.User_Id)
-            @Html.ValidationMessageFor(model => model.User_Id)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Product_Id)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Product_Id)
-            @Html.ValidationMessageFor(model => model.Product_Id)
-        </div>
+               
+         <ul></ul>
 
         <p>
             <input type="submit" value="Create" />
@@ -56,7 +42,6 @@
 
 
          
-         <ul></ul>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -71,8 +56,12 @@
            null,
            function (data) {
                $.each(data, function (i, val) {
-                   $("ul").append("<li>" + val.Name + " - " + val.Producer + "</li>");
+
+                   $("ul").append("<input type='radio' name='Product_Id' value='" +
+                    val.Id + "' />" +
+                    val.Name + " - " + val.Producer + "<br />");
                });
            });
    
 </script>
+
