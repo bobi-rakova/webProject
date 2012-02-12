@@ -27,6 +27,10 @@
         {
         	display:inline-block;
         }
+        .product-statistics
+        {
+        	display:inline-block;
+        }
         .navigation
         {
             margin-left: auto;
@@ -53,35 +57,54 @@
 </head>
 <body>
     
-    <div class="navigation">
-        <div class="main">
-            <div class="home">
-                @Html.ActionImage("Index", "Statistics", "/Content/home.png", "", "")
-            </div>
-            <div id="search">
-                <form action="" method="post">
-                <input type="text" name="criteria" value="Product" class="search-input">
-                <input type="submit" value="Search">
-                </form>
-            </div>
-            @foreach (var item in Model)
-            {
-                <div class="result">
-                    <div class="image">
-                        @{
-                            string args = "?selected=" + item.Name;
-                        }
-                        @Html.ActionImage("SelectProduct", "Search", "/Content/burger.png", "", args)
-                    </div>
-                    <div class="product-info">
+    <div class="main">
+        <div class="home">
+            @Html.ActionImage("Index", "Statistics", "/Content/home.png", "", "")
+        </div>
+        <div id="search">
+            <form action="" method="post">
+            <input type="text" name="criteria" value="Product" class="search-input">
+            <input type="submit" value="Search">
+            </form>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="result">
+                <div class="image">
+                    @{
+                        string args = "?selected=" + item.Name;
+                    }
+                    @Html.ActionImage("SelectProduct", "Search", "/Content/burger.png", "", args)
+                </div>
+                <div class="product-info">
+                    <div class="product-name">
                         @Html.DisplayFor(modelItem => item.Name)
+                    </div>
+                    <div class="product-descr">
                         @Html.DisplayFor(modelItem => item.Description)
-                        @Html.DisplayFor(modelItem => item.Proteins)
-                        @Html.DisplayFor(modelItem => item.Carbohydrates)
-                        @Html.DisplayFor(modelItem => item.Fat)
+                    </div>
+                    <div class="product-statistic">
+                        <div class="product-info">
+                            Carbohydrates
+                            <div id="carbs">
+                                @Html.DisplayFor(modelItem => item.Carbohydrates)g
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            Proteins
+                            <div id="proteins">
+                                @Html.DisplayFor(modelItem => item.Proteins)g
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            Fat
+                            <div id="fat" >
+                                @Html.DisplayFor(modelItem => item.Fat)g
+                            </div>
+                        </div>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 </body>

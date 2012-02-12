@@ -29,7 +29,7 @@ namespace GraboWebProject.Controllers
             return View(foundProducts);
         }
 
-        public ActionResult SelectProduct(FormCollection collection)
+        public ActionResult SelectProduct()
         {
             string selected = (string)Request["selected"];
 
