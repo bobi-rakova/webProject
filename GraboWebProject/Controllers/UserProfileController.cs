@@ -32,19 +32,14 @@ namespace GraboWebProject.Controllers
         public ActionResult Edit( User user )
         {
             User targetUser = entities.Users.Where( x => x.Id == user.Id ).FirstOrDefault();
-            if ( ModelState.IsValid )
-            {
-                targetUser.FirstName = user.FirstName;
-                targetUser.LastName = user.LastName;
-                targetUser.Age = user.Age;
-                targetUser.Gender = user.Gender;
+            targetUser.FirstName = user.FirstName;
+            targetUser.LastName = user.LastName;
+            targetUser.Age = user.Age;
+            targetUser.Gender = user.Gender;
 
-                this.entities.ObjectStateManager.ChangeObjectState( targetUser, System.Data.EntityState.Modified );
+            this.entities.ObjectStateManager.ChangeObjectState( targetUser, System.Data.EntityState.Modified );
 
-                this.entities.SaveChanges();
-                return View( targetUser );
-            }
-
+            this.entities.SaveChanges();
             return View( targetUser );
         }
 
