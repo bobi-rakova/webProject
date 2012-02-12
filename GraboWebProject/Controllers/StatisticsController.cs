@@ -34,5 +34,18 @@ namespace GraboWebProject.Controllers
             return View();
         }
 
+        public ActionResult CreatePurchase()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreatePurchase( Purchase purchase )
+        {
+            this.entities.AddToPurchases( purchase );
+            this.entities.SaveChanges();
+
+            return View();
+        }
     }
 }
