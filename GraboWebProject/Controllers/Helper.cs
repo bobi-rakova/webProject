@@ -3,7 +3,7 @@
 
     public static class HtmlHelpers
     {
-        public static MvcHtmlString ActionImage(this HtmlHelper html, string action, string routeV, string imagePath, string alt)
+        public static MvcHtmlString ActionImage(this HtmlHelper html, string action, string routeV, string imagePath, string alt, string args)
         {
             var url = new UrlHelper(html.ViewContext.RequestContext);
 
@@ -15,7 +15,7 @@
 
             // build the <a> tag
             var anchorBuilder = new TagBuilder("a");
-            anchorBuilder.MergeAttribute("href", url.Action(action, routeV));
+            anchorBuilder.MergeAttribute("href", url.Action(action, routeV) + args);
             anchorBuilder.InnerHtml = imgHtml; // include the <img> tag inside
             string anchorHtml = anchorBuilder.ToString(TagRenderMode.Normal);
 

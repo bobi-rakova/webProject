@@ -19,6 +19,14 @@
         {
         	margin-top: 40px;
         }
+        .image
+        {
+        	display:inline-block;
+        }
+        .product-info
+        {
+        	display:inline-block;
+        }
         .navigation
         {
             margin-left: auto;
@@ -48,7 +56,7 @@
     <div class="navigation">
         <div class="main">
             <div class="home">
-                @Html.ActionImage("Index", "Statistics", "/Content/home.png", "")
+                @Html.ActionImage("Index", "Statistics", "/Content/home.png", "", "")
             </div>
             <div id="search">
                 <form action="" method="post">
@@ -56,10 +64,22 @@
                 <input type="submit" value="Search">
                 </form>
             </div>
-            @foreach(var item in Model)
+            @foreach (var item in Model)
             {
                 <div class="result">
-                    <a href="../SelectProduct?selected=@item.Name" name="name">@Html.DisplayFor(modelItem => item.Name)</a>
+                    <div class="image">
+                        @{
+                            string args = "?selected=" + item.Name;
+                        }
+                        @Html.ActionImage("SelectProduct", "Search", "/Content/burger.png", "", args)
+                    </div>
+                    <div class="product-info">
+                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => item.Description)
+                        @Html.DisplayFor(modelItem => item.Proteins)
+                        @Html.DisplayFor(modelItem => item.Carbohydrates)
+                        @Html.DisplayFor(modelItem => item.Fat)
+                    </div>
                 </div>
             }
         </div>
