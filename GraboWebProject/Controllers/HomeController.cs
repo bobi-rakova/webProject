@@ -22,11 +22,6 @@ namespace GraboWebProject.Controllers
         {
             return View();
         }
-
-        public ActionResult Login()
-        {
-            return RedirectToAction("LogOn", "Account");
-        }
         
         [HttpPost]
         public ActionResult Create( User user )
