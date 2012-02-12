@@ -23,7 +23,7 @@ namespace GraboWebProject.Controllers
 
         public ActionResult Login()
         {
-            return RedirectToAction( "LogOn", "Account" );
+            return RedirectToAction( "Index", "Statistics" );
         }
         
         [HttpPost]

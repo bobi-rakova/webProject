@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,8 +11,6 @@ namespace GraboWebProject.Controllers
 {
     public class AccountController : Controller
     {
-
-        private GrabooDBEntities entities = new GrabooDBEntities();
 
         //
         // GET: /Account/LogOn
@@ -27,69 +24,31 @@ namespace GraboWebProject.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public ActionResult LogOn( LogOnModel model, string returnUrl )
         {
-            if (ModelState.IsValid)
+            if ( ModelState.IsValid )
             {
-                if (model.RememberMe)
+                if ( Membership.ValidateUser( model.UserName, model.Password ) )
                 {
-                    if (System.Web.HttpContext.Current.Response.Cookies["coolCookie"] == null)
+                    FormsAuthentication.SetAuthCookie( model.UserName, model.RememberMe );
+                    if ( Url.IsLocalUrl( returnUrl ) && returnUrl.Length > 1 && returnUrl.StartsWith( "/" )
+                        && !returnUrl.StartsWith( "//" ) && !returnUrl.StartsWith( "/\\" ) )
                     {
-                        HttpCookie cookie = new HttpCookie("coolCookie");
-                        cookie.Values.Add(model.UserName, model.Password);
-                        System.Web.HttpContext.Current.Response.Cookies.Add(cookie);
+                        return Redirect( returnUrl );
                     }
                     else
                     {
-                        HttpCookie coolCookie = System.Web.HttpContext.Current.Response.Cookies["coolCookie"];
-                        bool userPresent = false;
-                        NameValueCollection nameValues = coolCookie.Values;
-                        for(int i = 0; i < nameValues.Count; i++)
-                        {
-                            if (nameValues.GetKey(i).Equals(model.UserName))
-                            {
-                                userPresent = true;
-                                break;
-                            }
-                        }
-
-                        if (!userPresent)
-                        {
-                            NameValueCollection userPass = new NameValueCollection();
-                            userPass.Set(model.UserName, model.Password);
-                            System.Web.HttpContext.Current.Response.Cookies["coolCookie"].Values.Add(userPass);
-                        }
-
+                        return RedirectToAction( "Index", "Home" );
                     }
                 }
-                //if ( Url.IsLocalUrl( returnUrl ) && returnUrl.Length > 1 && returnUrl.StartsWith( "/" )
-                //    && !returnUrl.StartsWith( "//" ) && !returnUrl.StartsWith( "/\\" ) )
-                //{
-                //    return Redirect( returnUrl );
-                //}
-
-                List<User> present = entities.Users.Where(x => x.Username == model.UserName).ToList();
-
-                if (present.Count == 1)
-                {
-                    ControllerContext.HttpContext.Session["loggedInUser"] = present.ElementAt(0);
-                    return RedirectToAction("Index", "Statistics");
-                }
-
-                else if (present.Count == 0)
-                {
-                    ModelState.AddModelError("", "The user couldn't be found.");
-                }
-
                 else
                 {
-                    // bre
+                    ModelState.AddModelError( "", "The user name or password provided is incorrect." );
                 }
-
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View( model );
         }
 
         //
@@ -99,7 +58,7 @@ namespace GraboWebProject.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction( "Index", "Home" );
         }
 
         //
@@ -107,34 +66,34 @@ namespace GraboWebProject.Controllers
 
         public ActionResult Register()
         {
-            return RedirectToAction("Create", "Home");
+            return View();
         }
 
         //
         // POST: /Account/Register
 
         [HttpPost]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register( RegisterModel model )
         {
-            if (ModelState.IsValid)
+            if ( ModelState.IsValid )
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+                Membership.CreateUser( model.UserName, model.Password, model.Email, null, null, true, null, out createStatus );
 
-                if (createStatus == MembershipCreateStatus.Success)
+                if ( createStatus == MembershipCreateStatus.Success )
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
+                    FormsAuthentication.SetAuthCookie( model.UserName, false /* createPersistentCookie */);
+                    return RedirectToAction( "Index", "Home" );
                 }
                 else
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                    ModelState.AddModelError( "", ErrorCodeToString( createStatus ) );
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View( model );
         }
 
         //
@@ -151,9 +110,9 @@ namespace GraboWebProject.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model)
+        public ActionResult ChangePassword( ChangePasswordModel model )
         {
-            if (ModelState.IsValid)
+            if ( ModelState.IsValid )
             {
 
                 // ChangePassword will throw an exception rather
@@ -161,26 +120,26 @@ namespace GraboWebProject.Controllers
                 bool changePasswordSucceeded;
                 try
                 {
-                    MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
-                    changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
+                    MembershipUser currentUser = Membership.GetUser( User.Identity.Name, true /* userIsOnline */);
+                    changePasswordSucceeded = currentUser.ChangePassword( model.OldPassword, model.NewPassword );
                 }
-                catch (Exception)
+                catch ( Exception )
                 {
                     changePasswordSucceeded = false;
                 }
 
-                if (changePasswordSucceeded)
+                if ( changePasswordSucceeded )
                 {
-                    return RedirectToAction("ChangePasswordSuccess");
+                    return RedirectToAction( "ChangePasswordSuccess" );
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                    ModelState.AddModelError( "", "The current password is incorrect or the new password is invalid." );
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View( model );
         }
 
         //
@@ -192,11 +151,11 @@ namespace GraboWebProject.Controllers
         }
 
         #region Status Codes
-        private static string ErrorCodeToString(MembershipCreateStatus createStatus)
+        private static string ErrorCodeToString( MembershipCreateStatus createStatus )
         {
             // See http://go.microsoft.com/fwlink/?LinkID=177550 for
             // a full list of status codes.
-            switch (createStatus)
+            switch ( createStatus )
             {
                 case MembershipCreateStatus.DuplicateUserName:
                     return "User name already exists. Please enter a different user name.";

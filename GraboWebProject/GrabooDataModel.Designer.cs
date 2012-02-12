@@ -14,67 +14,71 @@ using System.Data.EntityClient;
 using System.ComponentModel;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("GrabooDBModel", "FK_IngredientsAllergies", "Ingredients", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GraboWebProject.Ingredient), "Allergies", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GraboWebProject.Allergy), true)]
-[assembly: EdmRelationshipAttribute("GrabooDBModel", "FK_UsersAllergies", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GraboWebProject.User), "Allergies", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GraboWebProject.Allergy), true)]
-[assembly: EdmRelationshipAttribute("GrabooDBModel", "FK_IngredientsNutritionElements", "Ingredients", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GraboWebProject.Ingredient), "NutritionElements", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GraboWebProject.NutritionElement), true)]
-[assembly: EdmRelationshipAttribute("GrabooDBModel", "FK_ProductsNutritionElements", "Products", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GraboWebProject.Product), "NutritionElements", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GraboWebProject.NutritionElement), true)]
-[assembly: EdmRelationshipAttribute("GrabooDBModel", "FK_ProductsPurchases", "Products", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GraboWebProject.Product), "Purchases", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GraboWebProject.Purchase), true)]
-[assembly: EdmRelationshipAttribute("GrabooDBModel", "FK_UsersPurchases", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GraboWebProject.User), "Purchases", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GraboWebProject.Purchase), true)]
+[assembly: EdmRelationshipAttribute( "GrabooDBModel", "FK_IngredientsAllergies", "Ingredients", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof( GraboWebProject.Ingredient ), "Allergies", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof( GraboWebProject.Allergy ), true )]
+[assembly: EdmRelationshipAttribute( "GrabooDBModel", "FK_UsersAllergies", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof( GraboWebProject.User ), "Allergies", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof( GraboWebProject.Allergy ), true )]
+[assembly: EdmRelationshipAttribute( "GrabooDBModel", "FK_IngredientsNutritionElements", "Ingredients", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof( GraboWebProject.Ingredient ), "NutritionElements", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof( GraboWebProject.NutritionElement ), true )]
+[assembly: EdmRelationshipAttribute( "GrabooDBModel", "FK_ProductsNutritionElements", "Products", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof( GraboWebProject.Product ), "NutritionElements", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof( GraboWebProject.NutritionElement ), true )]
+[assembly: EdmRelationshipAttribute( "GrabooDBModel", "FK_ProductsPurchases", "Products", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof( GraboWebProject.Product ), "Purchases", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof( GraboWebProject.Purchase ), true )]
+[assembly: EdmRelationshipAttribute( "GrabooDBModel", "FK_UsersPurchases", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof( GraboWebProject.User ), "Purchases", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof( GraboWebProject.Purchase ), true )]
 
 #endregion
 
 namespace GraboWebProject
 {
     #region Contexts
-    
+
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
     public partial class GrabooDBEntities : ObjectContext
     {
         #region Constructors
-    
+
         /// <summary>
         /// Initializes a new GrabooDBEntities object using the connection string found in the 'GrabooDBEntities' section of the application configuration file.
         /// </summary>
-        public GrabooDBEntities() : base("name=GrabooDBEntities", "GrabooDBEntities")
+        public GrabooDBEntities()
+            : base( "name=GrabooDBEntities", "GrabooDBEntities" )
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
-    
+
         /// <summary>
         /// Initialize a new GrabooDBEntities object.
         /// </summary>
-        public GrabooDBEntities(string connectionString) : base(connectionString, "GrabooDBEntities")
+        public GrabooDBEntities( string connectionString )
+            : base( connectionString, "GrabooDBEntities" )
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
-    
+
         /// <summary>
         /// Initialize a new GrabooDBEntities object.
         /// </summary>
-        public GrabooDBEntities(EntityConnection connection) : base(connection, "GrabooDBEntities")
+        public GrabooDBEntities( EntityConnection connection )
+            : base( connection, "GrabooDBEntities" )
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
-    
+
         #endregion
-    
+
         #region Partial Methods
-    
+
         partial void OnContextCreated();
-    
+
         #endregion
-    
+
         #region ObjectSet Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
@@ -82,15 +86,15 @@ namespace GraboWebProject
         {
             get
             {
-                if ((_Allergies == null))
+                if ( ( _Allergies == null ) )
                 {
-                    _Allergies = base.CreateObjectSet<Allergy>("Allergies");
+                    _Allergies = base.CreateObjectSet<Allergy>( "Allergies" );
                 }
                 return _Allergies;
             }
         }
         private ObjectSet<Allergy> _Allergies;
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
@@ -98,15 +102,15 @@ namespace GraboWebProject
         {
             get
             {
-                if ((_Ingredients == null))
+                if ( ( _Ingredients == null ) )
                 {
-                    _Ingredients = base.CreateObjectSet<Ingredient>("Ingredients");
+                    _Ingredients = base.CreateObjectSet<Ingredient>( "Ingredients" );
                 }
                 return _Ingredients;
             }
         }
         private ObjectSet<Ingredient> _Ingredients;
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
@@ -114,15 +118,15 @@ namespace GraboWebProject
         {
             get
             {
-                if ((_NutritionElements == null))
+                if ( ( _NutritionElements == null ) )
                 {
-                    _NutritionElements = base.CreateObjectSet<NutritionElement>("NutritionElements");
+                    _NutritionElements = base.CreateObjectSet<NutritionElement>( "NutritionElements" );
                 }
                 return _NutritionElements;
             }
         }
         private ObjectSet<NutritionElement> _NutritionElements;
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
@@ -130,15 +134,15 @@ namespace GraboWebProject
         {
             get
             {
-                if ((_Products == null))
+                if ( ( _Products == null ) )
                 {
-                    _Products = base.CreateObjectSet<Product>("Products");
+                    _Products = base.CreateObjectSet<Product>( "Products" );
                 }
                 return _Products;
             }
         }
         private ObjectSet<Product> _Products;
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
@@ -146,15 +150,15 @@ namespace GraboWebProject
         {
             get
             {
-                if ((_Purchases == null))
+                if ( ( _Purchases == null ) )
                 {
-                    _Purchases = base.CreateObjectSet<Purchase>("Purchases");
+                    _Purchases = base.CreateObjectSet<Purchase>( "Purchases" );
                 }
                 return _Purchases;
             }
         }
         private ObjectSet<Purchase> _Purchases;
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
@@ -162,9 +166,9 @@ namespace GraboWebProject
         {
             get
             {
-                if ((_Users == null))
+                if ( ( _Users == null ) )
                 {
-                    _Users = base.CreateObjectSet<User>("Users");
+                    _Users = base.CreateObjectSet<User>( "Users" );
                 }
                 return _Users;
             }
@@ -173,80 +177,80 @@ namespace GraboWebProject
 
         #endregion
         #region AddTo Methods
-    
+
         /// <summary>
         /// Deprecated Method for adding a new object to the Allergies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToAllergies(Allergy allergy)
+        public void AddToAllergies( Allergy allergy )
         {
-            base.AddObject("Allergies", allergy);
+            base.AddObject( "Allergies", allergy );
         }
-    
+
         /// <summary>
         /// Deprecated Method for adding a new object to the Ingredients EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToIngredients(Ingredient ingredient)
+        public void AddToIngredients( Ingredient ingredient )
         {
-            base.AddObject("Ingredients", ingredient);
+            base.AddObject( "Ingredients", ingredient );
         }
-    
+
         /// <summary>
         /// Deprecated Method for adding a new object to the NutritionElements EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToNutritionElements(NutritionElement nutritionElement)
+        public void AddToNutritionElements( NutritionElement nutritionElement )
         {
-            base.AddObject("NutritionElements", nutritionElement);
+            base.AddObject( "NutritionElements", nutritionElement );
         }
-    
+
         /// <summary>
         /// Deprecated Method for adding a new object to the Products EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToProducts(Product product)
+        public void AddToProducts( Product product )
         {
-            base.AddObject("Products", product);
+            base.AddObject( "Products", product );
         }
-    
+
         /// <summary>
         /// Deprecated Method for adding a new object to the Purchases EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToPurchases(Purchase purchase)
+        public void AddToPurchases( Purchase purchase )
         {
-            base.AddObject("Purchases", purchase);
+            base.AddObject( "Purchases", purchase );
         }
-    
+
         /// <summary>
         /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToUsers(User user)
+        public void AddToUsers( User user )
         {
-            base.AddObject("Users", user);
+            base.AddObject( "Users", user );
         }
 
         #endregion
     }
-    
+
 
     #endregion
-    
+
     #region Entities
-    
+
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="GrabooDBModel", Name="Allergy")]
+    [EdmEntityTypeAttribute( NamespaceName = "GrabooDBModel", Name = "Allergy" )]
     [Serializable()]
-    [DataContractAttribute(IsReference=true)]
+    [DataContractAttribute( IsReference = true )]
     public partial class Allergy : EntityObject
     {
         #region Factory Method
-    
+
         /// <summary>
         /// Create a new Allergy object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="user_Id">Initial value of the User_Id property.</param>
         /// <param name="ingredient_Id">Initial value of the Ingredient_Id property.</param>
-        public static Allergy CreateAllergy(global::System.Int32 id, global::System.Int32 user_Id, global::System.Int32 ingredient_Id)
+        public static Allergy CreateAllergy( global::System.Int32 id, global::System.Int32 user_Id, global::System.Int32 ingredient_Id )
         {
             Allergy allergy = new Allergy();
             allergy.Id = id;
@@ -257,11 +261,11 @@ namespace GraboWebProject
 
         #endregion
         #region Primitive Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = true, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Id
         {
@@ -271,24 +275,24 @@ namespace GraboWebProject
             }
             set
             {
-                if (_Id != value)
+                if ( _Id != value )
                 {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
+                    OnIdChanging( value );
+                    ReportPropertyChanging( "Id" );
+                    _Id = StructuralObject.SetValidValue( value );
+                    ReportPropertyChanged( "Id" );
                     OnIdChanged();
                 }
             }
         }
         private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanging( global::System.Int32 value );
         partial void OnIdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 User_Id
         {
@@ -298,21 +302,21 @@ namespace GraboWebProject
             }
             set
             {
-                OnUser_IdChanging(value);
-                ReportPropertyChanging("User_Id");
-                _User_Id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("User_Id");
+                OnUser_IdChanging( value );
+                ReportPropertyChanging( "User_Id" );
+                _User_Id = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "User_Id" );
                 OnUser_IdChanged();
             }
         }
         private global::System.Int32 _User_Id;
-        partial void OnUser_IdChanging(global::System.Int32 value);
+        partial void OnUser_IdChanging( global::System.Int32 value );
         partial void OnUser_IdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Ingredient_Id
         {
@@ -322,21 +326,21 @@ namespace GraboWebProject
             }
             set
             {
-                OnIngredient_IdChanging(value);
-                ReportPropertyChanging("Ingredient_Id");
-                _Ingredient_Id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Ingredient_Id");
+                OnIngredient_IdChanging( value );
+                ReportPropertyChanging( "Ingredient_Id" );
+                _Ingredient_Id = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "Ingredient_Id" );
                 OnIngredient_IdChanged();
             }
         }
         private global::System.Int32 _Ingredient_Id;
-        partial void OnIngredient_IdChanging(global::System.Int32 value);
+        partial void OnIngredient_IdChanging( global::System.Int32 value );
         partial void OnIngredient_IdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
         public global::System.String Description
         {
@@ -346,117 +350,117 @@ namespace GraboWebProject
             }
             set
             {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Description");
+                OnDescriptionChanging( value );
+                ReportPropertyChanging( "Description" );
+                _Description = StructuralObject.SetValidValue( value, true );
+                ReportPropertyChanged( "Description" );
                 OnDescriptionChanged();
             }
         }
         private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanging( global::System.String value );
         partial void OnDescriptionChanged();
 
         #endregion
-    
+
         #region Navigation Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_IngredientsAllergies", "Ingredients")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_IngredientsAllergies", "Ingredients" )]
         public Ingredient Ingredient
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("GrabooDBModel.FK_IngredientsAllergies", "Ingredients").Value;
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Ingredient>( "GrabooDBModel.FK_IngredientsAllergies", "Ingredients" ).Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("GrabooDBModel.FK_IngredientsAllergies", "Ingredients").Value = value;
+                ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Ingredient>( "GrabooDBModel.FK_IngredientsAllergies", "Ingredients" ).Value = value;
             }
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [BrowsableAttribute(false)]
+        [BrowsableAttribute( false )]
         [DataMemberAttribute()]
         public EntityReference<Ingredient> IngredientReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("GrabooDBModel.FK_IngredientsAllergies", "Ingredients");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Ingredient>( "GrabooDBModel.FK_IngredientsAllergies", "Ingredients" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Ingredient>("GrabooDBModel.FK_IngredientsAllergies", "Ingredients", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedReference<Ingredient>( "GrabooDBModel.FK_IngredientsAllergies", "Ingredients", value );
                 }
             }
         }
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_UsersAllergies", "Users")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_UsersAllergies", "Users" )]
         public User User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GrabooDBModel.FK_UsersAllergies", "Users").Value;
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<User>( "GrabooDBModel.FK_UsersAllergies", "Users" ).Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GrabooDBModel.FK_UsersAllergies", "Users").Value = value;
+                ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<User>( "GrabooDBModel.FK_UsersAllergies", "Users" ).Value = value;
             }
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [BrowsableAttribute(false)]
+        [BrowsableAttribute( false )]
         [DataMemberAttribute()]
         public EntityReference<User> UserReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GrabooDBModel.FK_UsersAllergies", "Users");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<User>( "GrabooDBModel.FK_UsersAllergies", "Users" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("GrabooDBModel.FK_UsersAllergies", "Users", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedReference<User>( "GrabooDBModel.FK_UsersAllergies", "Users", value );
                 }
             }
         }
 
         #endregion
     }
-    
+
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="GrabooDBModel", Name="Ingredient")]
+    [EdmEntityTypeAttribute( NamespaceName = "GrabooDBModel", Name = "Ingredient" )]
     [Serializable()]
-    [DataContractAttribute(IsReference=true)]
+    [DataContractAttribute( IsReference = true )]
     public partial class Ingredient : EntityObject
     {
         #region Factory Method
-    
+
         /// <summary>
         /// Create a new Ingredient object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="description">Initial value of the Description property.</param>
-        public static Ingredient CreateIngredient(global::System.Int32 id, global::System.String name, global::System.String description)
+        public static Ingredient CreateIngredient( global::System.Int32 id, global::System.String name, global::System.String description )
         {
             Ingredient ingredient = new Ingredient();
             ingredient.Id = id;
@@ -467,11 +471,11 @@ namespace GraboWebProject
 
         #endregion
         #region Primitive Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = true, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Id
         {
@@ -481,24 +485,24 @@ namespace GraboWebProject
             }
             set
             {
-                if (_Id != value)
+                if ( _Id != value )
                 {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
+                    OnIdChanging( value );
+                    ReportPropertyChanging( "Id" );
+                    _Id = StructuralObject.SetValidValue( value );
+                    ReportPropertyChanged( "Id" );
                     OnIdChanged();
                 }
             }
         }
         private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanging( global::System.Int32 value );
         partial void OnIdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.String Name
         {
@@ -508,21 +512,21 @@ namespace GraboWebProject
             }
             set
             {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
+                OnNameChanging( value );
+                ReportPropertyChanging( "Name" );
+                _Name = StructuralObject.SetValidValue( value, false );
+                ReportPropertyChanged( "Name" );
                 OnNameChanged();
             }
         }
         private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanging( global::System.String value );
         partial void OnNameChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.String Description
         {
@@ -532,85 +536,85 @@ namespace GraboWebProject
             }
             set
             {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Description");
+                OnDescriptionChanging( value );
+                ReportPropertyChanging( "Description" );
+                _Description = StructuralObject.SetValidValue( value, false );
+                ReportPropertyChanged( "Description" );
                 OnDescriptionChanged();
             }
         }
         private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanging( global::System.String value );
         partial void OnDescriptionChanged();
 
         #endregion
-    
+
         #region Navigation Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_IngredientsAllergies", "Allergies")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_IngredientsAllergies", "Allergies" )]
         public EntityCollection<Allergy> Allergies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Allergy>("GrabooDBModel.FK_IngredientsAllergies", "Allergies");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedCollection<Allergy>( "GrabooDBModel.FK_IngredientsAllergies", "Allergies" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Allergy>("GrabooDBModel.FK_IngredientsAllergies", "Allergies", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedCollection<Allergy>( "GrabooDBModel.FK_IngredientsAllergies", "Allergies", value );
                 }
             }
         }
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_IngredientsNutritionElements", "NutritionElements")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_IngredientsNutritionElements", "NutritionElements" )]
         public EntityCollection<NutritionElement> NutritionElements
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<NutritionElement>("GrabooDBModel.FK_IngredientsNutritionElements", "NutritionElements");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedCollection<NutritionElement>( "GrabooDBModel.FK_IngredientsNutritionElements", "NutritionElements" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<NutritionElement>("GrabooDBModel.FK_IngredientsNutritionElements", "NutritionElements", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedCollection<NutritionElement>( "GrabooDBModel.FK_IngredientsNutritionElements", "NutritionElements", value );
                 }
             }
         }
 
         #endregion
     }
-    
+
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="GrabooDBModel", Name="NutritionElement")]
+    [EdmEntityTypeAttribute( NamespaceName = "GrabooDBModel", Name = "NutritionElement" )]
     [Serializable()]
-    [DataContractAttribute(IsReference=true)]
+    [DataContractAttribute( IsReference = true )]
     public partial class NutritionElement : EntityObject
     {
         #region Factory Method
-    
+
         /// <summary>
         /// Create a new NutritionElement object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="product_Id">Initial value of the Product_Id property.</param>
         /// <param name="ingredient_Id">Initial value of the Ingredient_Id property.</param>
-        public static NutritionElement CreateNutritionElement(global::System.Int32 id, global::System.Int32 product_Id, global::System.Int32 ingredient_Id)
+        public static NutritionElement CreateNutritionElement( global::System.Int32 id, global::System.Int32 product_Id, global::System.Int32 ingredient_Id )
         {
             NutritionElement nutritionElement = new NutritionElement();
             nutritionElement.Id = id;
@@ -621,11 +625,11 @@ namespace GraboWebProject
 
         #endregion
         #region Primitive Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = true, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Id
         {
@@ -635,24 +639,24 @@ namespace GraboWebProject
             }
             set
             {
-                if (_Id != value)
+                if ( _Id != value )
                 {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
+                    OnIdChanging( value );
+                    ReportPropertyChanging( "Id" );
+                    _Id = StructuralObject.SetValidValue( value );
+                    ReportPropertyChanged( "Id" );
                     OnIdChanged();
                 }
             }
         }
         private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanging( global::System.Int32 value );
         partial void OnIdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Product_Id
         {
@@ -662,21 +666,21 @@ namespace GraboWebProject
             }
             set
             {
-                OnProduct_IdChanging(value);
-                ReportPropertyChanging("Product_Id");
-                _Product_Id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Product_Id");
+                OnProduct_IdChanging( value );
+                ReportPropertyChanging( "Product_Id" );
+                _Product_Id = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "Product_Id" );
                 OnProduct_IdChanged();
             }
         }
         private global::System.Int32 _Product_Id;
-        partial void OnProduct_IdChanging(global::System.Int32 value);
+        partial void OnProduct_IdChanging( global::System.Int32 value );
         partial void OnProduct_IdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Ingredient_Id
         {
@@ -686,116 +690,117 @@ namespace GraboWebProject
             }
             set
             {
-                OnIngredient_IdChanging(value);
-                ReportPropertyChanging("Ingredient_Id");
-                _Ingredient_Id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Ingredient_Id");
+                OnIngredient_IdChanging( value );
+                ReportPropertyChanging( "Ingredient_Id" );
+                _Ingredient_Id = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "Ingredient_Id" );
                 OnIngredient_IdChanged();
             }
         }
         private global::System.Int32 _Ingredient_Id;
-        partial void OnIngredient_IdChanging(global::System.Int32 value);
+        partial void OnIngredient_IdChanging( global::System.Int32 value );
         partial void OnIngredient_IdChanged();
 
         #endregion
-    
+
         #region Navigation Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_IngredientsNutritionElements", "Ingredients")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_IngredientsNutritionElements", "Ingredients" )]
         public Ingredient Ingredient
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("GrabooDBModel.FK_IngredientsNutritionElements", "Ingredients").Value;
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Ingredient>( "GrabooDBModel.FK_IngredientsNutritionElements", "Ingredients" ).Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("GrabooDBModel.FK_IngredientsNutritionElements", "Ingredients").Value = value;
+                ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Ingredient>( "GrabooDBModel.FK_IngredientsNutritionElements", "Ingredients" ).Value = value;
             }
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [BrowsableAttribute(false)]
+        [BrowsableAttribute( false )]
         [DataMemberAttribute()]
         public EntityReference<Ingredient> IngredientReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("GrabooDBModel.FK_IngredientsNutritionElements", "Ingredients");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Ingredient>( "GrabooDBModel.FK_IngredientsNutritionElements", "Ingredients" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Ingredient>("GrabooDBModel.FK_IngredientsNutritionElements", "Ingredients", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedReference<Ingredient>( "GrabooDBModel.FK_IngredientsNutritionElements", "Ingredients", value );
                 }
             }
         }
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_ProductsNutritionElements", "Products")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_ProductsNutritionElements", "Products" )]
         public Product Product
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("GrabooDBModel.FK_ProductsNutritionElements", "Products").Value;
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Product>( "GrabooDBModel.FK_ProductsNutritionElements", "Products" ).Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("GrabooDBModel.FK_ProductsNutritionElements", "Products").Value = value;
+                ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Product>( "GrabooDBModel.FK_ProductsNutritionElements", "Products" ).Value = value;
             }
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [BrowsableAttribute(false)]
+        [BrowsableAttribute( false )]
         [DataMemberAttribute()]
         public EntityReference<Product> ProductReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("GrabooDBModel.FK_ProductsNutritionElements", "Products");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Product>( "GrabooDBModel.FK_ProductsNutritionElements", "Products" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Product>("GrabooDBModel.FK_ProductsNutritionElements", "Products", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedReference<Product>( "GrabooDBModel.FK_ProductsNutritionElements", "Products", value );
                 }
             }
         }
 
         #endregion
     }
-    
+
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="GrabooDBModel", Name="Product")]
+    [EdmEntityTypeAttribute( NamespaceName = "GrabooDBModel", Name = "Product" )]
     [Serializable()]
-    [DataContractAttribute(IsReference=true)]
+    [DataContractAttribute( IsReference = true )]
+
     public partial class Product : EntityObject
     {
         #region Factory Method
-    
+
         /// <summary>
         /// Create a new Product object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Product CreateProduct(global::System.Int32 id, global::System.String name)
+        public static Product CreateProduct( global::System.Int32 id, global::System.String name )
         {
             Product product = new Product();
             product.Id = id;
@@ -805,11 +810,11 @@ namespace GraboWebProject
 
         #endregion
         #region Primitive Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = true, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Id
         {
@@ -819,25 +824,28 @@ namespace GraboWebProject
             }
             set
             {
-                if (_Id != value)
+                if ( _Id != value )
                 {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
+                    OnIdChanging( value );
+                    ReportPropertyChanging( "Id" );
+                    _Id = StructuralObject.SetValidValue( value );
+                    ReportPropertyChanged( "Id" );
                     OnIdChanged();
                 }
             }
         }
         private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanging( global::System.Int32 value );
         partial void OnIdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "You must enter product name!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "Product Name" )]
         public global::System.String Name
         {
             get
@@ -846,22 +854,25 @@ namespace GraboWebProject
             }
             set
             {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
+                OnNameChanging( value );
+                ReportPropertyChanging( "Name" );
+                _Name = StructuralObject.SetValidValue( value, false );
+                ReportPropertyChanged( "Name" );
                 OnNameChanged();
             }
         }
         private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanging( global::System.String value );
         partial void OnNameChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "Don't leave the product description empty!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "Product Description" )]
         public global::System.String Description
         {
             get
@@ -870,21 +881,21 @@ namespace GraboWebProject
             }
             set
             {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Description");
+                OnDescriptionChanging( value );
+                ReportPropertyChanging( "Description" );
+                _Description = StructuralObject.SetValidValue( value, true );
+                ReportPropertyChanged( "Description" );
                 OnDescriptionChanged();
             }
         }
         private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanging( global::System.String value );
         partial void OnDescriptionChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
         public global::System.String Producer
         {
@@ -894,22 +905,24 @@ namespace GraboWebProject
             }
             set
             {
-                OnProducerChanging(value);
-                ReportPropertyChanging("Producer");
-                _Producer = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Producer");
+                OnProducerChanging( value );
+                ReportPropertyChanging( "Producer" );
+                _Producer = StructuralObject.SetValidValue( value, true );
+                ReportPropertyChanged( "Producer" );
                 OnProducerChanged();
             }
         }
         private global::System.String _Producer;
-        partial void OnProducerChanging(global::System.String value);
+        partial void OnProducerChanging( global::System.String value );
         partial void OnProducerChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
+        [Range( 0, 100, ErrorMessage = "The Carbohydrates must be between 0 and 100." )]
+        [Display( Name = "Carbohydrates" )]
         public Nullable<global::System.Int32> Carbohydrates
         {
             get
@@ -918,22 +931,24 @@ namespace GraboWebProject
             }
             set
             {
-                OnCarbohydratesChanging(value);
-                ReportPropertyChanging("Carbohydrates");
-                _Carbohydrates = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Carbohydrates");
+                OnCarbohydratesChanging( value );
+                ReportPropertyChanging( "Carbohydrates" );
+                _Carbohydrates = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "Carbohydrates" );
                 OnCarbohydratesChanged();
             }
         }
         private Nullable<global::System.Int32> _Carbohydrates;
-        partial void OnCarbohydratesChanging(Nullable<global::System.Int32> value);
+        partial void OnCarbohydratesChanging( Nullable<global::System.Int32> value );
         partial void OnCarbohydratesChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
+        [Range( 0, 100, ErrorMessage = "The Proteins must be between 0 and 100." )]
+        [Display( Name = "Proteins" )]
         public Nullable<global::System.Int32> Proteins
         {
             get
@@ -942,22 +957,24 @@ namespace GraboWebProject
             }
             set
             {
-                OnProteinsChanging(value);
-                ReportPropertyChanging("Proteins");
-                _Proteins = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Proteins");
+                OnProteinsChanging( value );
+                ReportPropertyChanging( "Proteins" );
+                _Proteins = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "Proteins" );
                 OnProteinsChanged();
             }
         }
         private Nullable<global::System.Int32> _Proteins;
-        partial void OnProteinsChanging(Nullable<global::System.Int32> value);
+        partial void OnProteinsChanging( Nullable<global::System.Int32> value );
         partial void OnProteinsChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
+        [Range( 0, 100, ErrorMessage = "The Fat must be between 0 and 100." )]
+        [Display( Name = "Fat" )]
         public Nullable<global::System.Int32> Fat
         {
             get
@@ -966,78 +983,78 @@ namespace GraboWebProject
             }
             set
             {
-                OnFatChanging(value);
-                ReportPropertyChanging("Fat");
-                _Fat = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Fat");
+                OnFatChanging( value );
+                ReportPropertyChanging( "Fat" );
+                _Fat = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "Fat" );
                 OnFatChanged();
             }
         }
         private Nullable<global::System.Int32> _Fat;
-        partial void OnFatChanging(Nullable<global::System.Int32> value);
+        partial void OnFatChanging( Nullable<global::System.Int32> value );
         partial void OnFatChanged();
 
         #endregion
-    
+
         #region Navigation Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_ProductsNutritionElements", "NutritionElements")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_ProductsNutritionElements", "NutritionElements" )]
         public EntityCollection<NutritionElement> NutritionElements
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<NutritionElement>("GrabooDBModel.FK_ProductsNutritionElements", "NutritionElements");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedCollection<NutritionElement>( "GrabooDBModel.FK_ProductsNutritionElements", "NutritionElements" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<NutritionElement>("GrabooDBModel.FK_ProductsNutritionElements", "NutritionElements", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedCollection<NutritionElement>( "GrabooDBModel.FK_ProductsNutritionElements", "NutritionElements", value );
                 }
             }
         }
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_ProductsPurchases", "Purchases")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_ProductsPurchases", "Purchases" )]
         public EntityCollection<Purchase> Purchases
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Purchase>("GrabooDBModel.FK_ProductsPurchases", "Purchases");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedCollection<Purchase>( "GrabooDBModel.FK_ProductsPurchases", "Purchases" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Purchase>("GrabooDBModel.FK_ProductsPurchases", "Purchases", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedCollection<Purchase>( "GrabooDBModel.FK_ProductsPurchases", "Purchases", value );
                 }
             }
         }
 
         #endregion
     }
-    
+
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="GrabooDBModel", Name="Purchase")]
+    [EdmEntityTypeAttribute( NamespaceName = "GrabooDBModel", Name = "Purchase" )]
     [Serializable()]
-    [DataContractAttribute(IsReference=true)]
+    [DataContractAttribute( IsReference = true )]
     public partial class Purchase : EntityObject
     {
         #region Factory Method
-    
+
         /// <summary>
         /// Create a new Purchase object.
         /// </summary>
@@ -1045,7 +1062,7 @@ namespace GraboWebProject
         /// <param name="date">Initial value of the Date property.</param>
         /// <param name="user_Id">Initial value of the User_Id property.</param>
         /// <param name="product_Id">Initial value of the Product_Id property.</param>
-        public static Purchase CreatePurchase(global::System.Int32 id, global::System.DateTime date, global::System.Int32 user_Id, global::System.Int32 product_Id)
+        public static Purchase CreatePurchase( global::System.Int32 id, global::System.DateTime date, global::System.Int32 user_Id, global::System.Int32 product_Id )
         {
             Purchase purchase = new Purchase();
             purchase.Id = id;
@@ -1057,11 +1074,11 @@ namespace GraboWebProject
 
         #endregion
         #region Primitive Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = true, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Id
         {
@@ -1071,24 +1088,24 @@ namespace GraboWebProject
             }
             set
             {
-                if (_Id != value)
+                if ( _Id != value )
                 {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
+                    OnIdChanging( value );
+                    ReportPropertyChanging( "Id" );
+                    _Id = StructuralObject.SetValidValue( value );
+                    ReportPropertyChanged( "Id" );
                     OnIdChanged();
                 }
             }
         }
         private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanging( global::System.Int32 value );
         partial void OnIdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.DateTime Date
         {
@@ -1098,21 +1115,21 @@ namespace GraboWebProject
             }
             set
             {
-                OnDateChanging(value);
-                ReportPropertyChanging("Date");
-                _Date = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Date");
+                OnDateChanging( value );
+                ReportPropertyChanging( "Date" );
+                _Date = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "Date" );
                 OnDateChanged();
             }
         }
         private global::System.DateTime _Date;
-        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanging( global::System.DateTime value );
         partial void OnDateChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
         public global::System.String Place
         {
@@ -1122,21 +1139,21 @@ namespace GraboWebProject
             }
             set
             {
-                OnPlaceChanging(value);
-                ReportPropertyChanging("Place");
-                _Place = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Place");
+                OnPlaceChanging( value );
+                ReportPropertyChanging( "Place" );
+                _Place = StructuralObject.SetValidValue( value, true );
+                ReportPropertyChanged( "Place" );
                 OnPlaceChanged();
             }
         }
         private global::System.String _Place;
-        partial void OnPlaceChanging(global::System.String value);
+        partial void OnPlaceChanging( global::System.String value );
         partial void OnPlaceChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 User_Id
         {
@@ -1146,21 +1163,21 @@ namespace GraboWebProject
             }
             set
             {
-                OnUser_IdChanging(value);
-                ReportPropertyChanging("User_Id");
-                _User_Id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("User_Id");
+                OnUser_IdChanging( value );
+                ReportPropertyChanging( "User_Id" );
+                _User_Id = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "User_Id" );
                 OnUser_IdChanged();
             }
         }
         private global::System.Int32 _User_Id;
-        partial void OnUser_IdChanging(global::System.Int32 value);
+        partial void OnUser_IdChanging( global::System.Int32 value );
         partial void OnUser_IdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Product_Id
         {
@@ -1170,116 +1187,116 @@ namespace GraboWebProject
             }
             set
             {
-                OnProduct_IdChanging(value);
-                ReportPropertyChanging("Product_Id");
-                _Product_Id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Product_Id");
+                OnProduct_IdChanging( value );
+                ReportPropertyChanging( "Product_Id" );
+                _Product_Id = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "Product_Id" );
                 OnProduct_IdChanged();
             }
         }
         private global::System.Int32 _Product_Id;
-        partial void OnProduct_IdChanging(global::System.Int32 value);
+        partial void OnProduct_IdChanging( global::System.Int32 value );
         partial void OnProduct_IdChanged();
 
         #endregion
-    
+
         #region Navigation Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_ProductsPurchases", "Products")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_ProductsPurchases", "Products" )]
         public Product Product
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("GrabooDBModel.FK_ProductsPurchases", "Products").Value;
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Product>( "GrabooDBModel.FK_ProductsPurchases", "Products" ).Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("GrabooDBModel.FK_ProductsPurchases", "Products").Value = value;
+                ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Product>( "GrabooDBModel.FK_ProductsPurchases", "Products" ).Value = value;
             }
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [BrowsableAttribute(false)]
+        [BrowsableAttribute( false )]
         [DataMemberAttribute()]
         public EntityReference<Product> ProductReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("GrabooDBModel.FK_ProductsPurchases", "Products");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<Product>( "GrabooDBModel.FK_ProductsPurchases", "Products" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Product>("GrabooDBModel.FK_ProductsPurchases", "Products", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedReference<Product>( "GrabooDBModel.FK_ProductsPurchases", "Products", value );
                 }
             }
         }
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_UsersPurchases", "Users")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_UsersPurchases", "Users" )]
         public User User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GrabooDBModel.FK_UsersPurchases", "Users").Value;
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<User>( "GrabooDBModel.FK_UsersPurchases", "Users" ).Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GrabooDBModel.FK_UsersPurchases", "Users").Value = value;
+                ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<User>( "GrabooDBModel.FK_UsersPurchases", "Users" ).Value = value;
             }
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [BrowsableAttribute(false)]
+        [BrowsableAttribute( false )]
         [DataMemberAttribute()]
         public EntityReference<User> UserReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GrabooDBModel.FK_UsersPurchases", "Users");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedReference<User>( "GrabooDBModel.FK_UsersPurchases", "Users" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("GrabooDBModel.FK_UsersPurchases", "Users", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedReference<User>( "GrabooDBModel.FK_UsersPurchases", "Users", value );
                 }
             }
         }
 
         #endregion
     }
-    
+
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="GrabooDBModel", Name="User")]
+    [EdmEntityTypeAttribute( NamespaceName = "GrabooDBModel", Name = "User" )]
     [Serializable()]
-    [DataContractAttribute(IsReference=true)]
+    [DataContractAttribute( IsReference = true )]
     public partial class User : EntityObject
     {
         #region Factory Method
-    
+
         /// <summary>
         /// Create a new User object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="firstName">Initial value of the FirstName property.</param>
-        public static User CreateUser(global::System.Int32 id, global::System.String firstName)
+        public static User CreateUser( global::System.Int32 id, global::System.String firstName )
         {
             User user = new User();
             user.Id = id;
@@ -1289,11 +1306,11 @@ namespace GraboWebProject
 
         #endregion
         #region Primitive Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = true, IsNullable = false )]
         [DataMemberAttribute()]
         public global::System.Int32 Id
         {
@@ -1303,25 +1320,28 @@ namespace GraboWebProject
             }
             set
             {
-                if (_Id != value)
+                if ( _Id != value )
                 {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
+                    OnIdChanging( value );
+                    ReportPropertyChanging( "Id" );
+                    _Id = StructuralObject.SetValidValue( value );
+                    ReportPropertyChanged( "Id" );
                     OnIdChanged();
                 }
             }
         }
         private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanging( global::System.Int32 value );
         partial void OnIdChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = false )]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The first name field is required!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "First Name" )]
         public global::System.String FirstName
         {
             get
@@ -1330,22 +1350,25 @@ namespace GraboWebProject
             }
             set
             {
-                OnFirstNameChanging(value);
-                ReportPropertyChanging("FirstName");
-                _FirstName = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("FirstName");
+                OnFirstNameChanging( value );
+                ReportPropertyChanging( "FirstName" );
+                _FirstName = StructuralObject.SetValidValue( value, false );
+                ReportPropertyChanged( "FirstName" );
                 OnFirstNameChanged();
             }
         }
         private global::System.String _FirstName;
-        partial void OnFirstNameChanging(global::System.String value);
+        partial void OnFirstNameChanging( global::System.String value );
         partial void OnFirstNameChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The last name field is required!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "Last Name" )]
         public global::System.String LastName
         {
             get
@@ -1354,22 +1377,24 @@ namespace GraboWebProject
             }
             set
             {
-                OnLastNameChanging(value);
-                ReportPropertyChanging("LastName");
-                _LastName = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("LastName");
+                OnLastNameChanging( value );
+                ReportPropertyChanging( "LastName" );
+                _LastName = StructuralObject.SetValidValue( value, true );
+                ReportPropertyChanged( "LastName" );
                 OnLastNameChanged();
             }
         }
         private global::System.String _LastName;
-        partial void OnLastNameChanging(global::System.String value);
+        partial void OnLastNameChanging( global::System.String value );
         partial void OnLastNameChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
+        [Range( 0, 100, ErrorMessage = "You must enter a valid value for the age field." )]
+        [Display( Name = "Age", Description="Your age" )]
         public Nullable<global::System.Int32> Age
         {
             get
@@ -1378,21 +1403,21 @@ namespace GraboWebProject
             }
             set
             {
-                OnAgeChanging(value);
-                ReportPropertyChanging("Age");
-                _Age = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Age");
+                OnAgeChanging( value );
+                ReportPropertyChanging( "Age" );
+                _Age = StructuralObject.SetValidValue( value );
+                ReportPropertyChanged( "Age" );
                 OnAgeChanged();
             }
         }
         private Nullable<global::System.Int32> _Age;
-        partial void OnAgeChanging(Nullable<global::System.Int32> value);
+        partial void OnAgeChanging( Nullable<global::System.Int32> value );
         partial void OnAgeChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
         public global::System.String Gender
         {
@@ -1402,22 +1427,25 @@ namespace GraboWebProject
             }
             set
             {
-                OnGenderChanging(value);
-                ReportPropertyChanging("Gender");
-                _Gender = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Gender");
+                OnGenderChanging( value );
+                ReportPropertyChanging( "Gender" );
+                _Gender = StructuralObject.SetValidValue( value, true );
+                ReportPropertyChanged( "Gender" );
                 OnGenderChanged();
             }
         }
         private global::System.String _Gender;
-        partial void OnGenderChanging(global::System.String value);
+        partial void OnGenderChanging( global::System.String value );
         partial void OnGenderChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The username field is required!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "Name" )]
         public global::System.String Username
         {
             get
@@ -1426,22 +1454,25 @@ namespace GraboWebProject
             }
             set
             {
-                OnUsernameChanging(value);
-                ReportPropertyChanging("Username");
-                _Username = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Username");
+                OnUsernameChanging( value );
+                ReportPropertyChanging( "Username" );
+                _Username = StructuralObject.SetValidValue( value, true );
+                ReportPropertyChanged( "Username" );
                 OnUsernameChanged();
             }
         }
         private global::System.String _Username;
-        partial void OnUsernameChanging(global::System.String value);
+        partial void OnUsernameChanging( global::System.String value );
         partial void OnUsernameChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The password field is required!" )]
+        [DataType( DataType.Password )]
+        [Display( Name = "Password" )]
         public global::System.String Password
         {
             get
@@ -1450,22 +1481,26 @@ namespace GraboWebProject
             }
             set
             {
-                OnPasswordChanging(value);
-                ReportPropertyChanging("Password");
-                _Password = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Password");
+                OnPasswordChanging( value );
+                ReportPropertyChanging( "Password" );
+                _Password = StructuralObject.SetValidValue( value, true );
+                ReportPropertyChanged( "Password" );
                 OnPasswordChanged();
             }
         }
         private global::System.String _Password;
-        partial void OnPasswordChanging(global::System.String value);
+        partial void OnPasswordChanging( global::System.String value );
         partial void OnPasswordChanged();
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute( EntityKeyProperty = false, IsNullable = true )]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The email field is required!" )]
+        [RegularExpression("^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\\-+)|([A-Za-z0-9]+\\.+)|([A-Za-z0-9]+\\++))*[A-Za-z0-9]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6}$",
+           ErrorMessage="You should enter a valid e-mail!" )]
+        [Display( Name = "Email" )]
         public global::System.String Email
         {
             get
@@ -1474,61 +1509,61 @@ namespace GraboWebProject
             }
             set
             {
-                OnEmailChanging(value);
-                ReportPropertyChanging("Email");
-                _Email = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Email");
+                OnEmailChanging( value );
+                ReportPropertyChanging( "Email" );
+                _Email = StructuralObject.SetValidValue( value, true );
+                ReportPropertyChanged( "Email" );
                 OnEmailChanged();
             }
         }
         private global::System.String _Email;
-        partial void OnEmailChanging(global::System.String value);
+        partial void OnEmailChanging( global::System.String value );
         partial void OnEmailChanged();
 
         #endregion
-    
+
         #region Navigation Properties
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_UsersAllergies", "Allergies")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_UsersAllergies", "Allergies" )]
         public EntityCollection<Allergy> Allergies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Allergy>("GrabooDBModel.FK_UsersAllergies", "Allergies");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedCollection<Allergy>( "GrabooDBModel.FK_UsersAllergies", "Allergies" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Allergy>("GrabooDBModel.FK_UsersAllergies", "Allergies", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedCollection<Allergy>( "GrabooDBModel.FK_UsersAllergies", "Allergies", value );
                 }
             }
         }
-    
+
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GrabooDBModel", "FK_UsersPurchases", "Purchases")]
+        [EdmRelationshipNavigationPropertyAttribute( "GrabooDBModel", "FK_UsersPurchases", "Purchases" )]
         public EntityCollection<Purchase> Purchases
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Purchase>("GrabooDBModel.FK_UsersPurchases", "Purchases");
+                return ( ( IEntityWithRelationships )this ).RelationshipManager.GetRelatedCollection<Purchase>( "GrabooDBModel.FK_UsersPurchases", "Purchases" );
             }
             set
             {
-                if ((value != null))
+                if ( ( value != null ) )
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Purchase>("GrabooDBModel.FK_UsersPurchases", "Purchases", value);
+                    ( ( IEntityWithRelationships )this ).RelationshipManager.InitializeRelatedCollection<Purchase>( "GrabooDBModel.FK_UsersPurchases", "Purchases", value );
                 }
             }
         }
@@ -1537,5 +1572,5 @@ namespace GraboWebProject
     }
 
     #endregion
-    
+
 }

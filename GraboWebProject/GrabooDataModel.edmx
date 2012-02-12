@@ -420,41 +420,40 @@
       <Diagram Name="GrabooDataModel">
         <EntityTypeShape EntityType="GrabooDBModel.Allergy" Width="1.5" PointX="5.875" PointY="4" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="GrabooDBModel.Ingredient" Width="1.5" PointX="3.25" PointY="0.5" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="GrabooDBModel.NutritionElement" Width="1.5" PointX="3.625" PointY="4.5" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="GrabooDBModel.NutritionElement" Width="1.5" PointX="3.625" PointY="4.75" Height="1.9802864583333335" IsExpanded="true" />
         <EntityTypeShape EntityType="GrabooDBModel.Product" Width="1.5" PointX="1.125" PointY="4.375" Height="2.7494921875000005" IsExpanded="true" />
         <EntityTypeShape EntityType="GrabooDBModel.Purchase" Width="1.5" PointX="5.5" PointY="1" Height="2.3648893229166656" IsExpanded="true" />
         <EntityTypeShape EntityType="GrabooDBModel.User" Width="1.5" PointX="1.125" PointY="1.625" Height="2.3648893229166674" IsExpanded="true" />
         <AssociationConnector Association="GrabooDBModel.FK_IngredientsAllergies" ManuallyRouted="false">
           <ConnectorPoint PointX="3.40625" PointY="2.4802864583333335" />
-          <ConnectorPoint PointX="3.40625" PointY="4.21875" />
-          <ConnectorPoint PointX="4.104166666666667" PointY="4.2187499999999991" />
-          <ConnectorPoint PointX="4.270833333333333" PointY="4.21875" />
-          <ConnectorPoint PointX="5.572916666666667" PointY="4.2187499999999991" />
-          <ConnectorPoint PointX="5.739583333333333" PointY="4.21875" />
-          <ConnectorPoint PointX="5.875" PointY="4.21875" />
+          <ConnectorPoint PointX="3.40625" PointY="4.34375" />
+          <ConnectorPoint PointX="4.104166666666667" PointY="4.3437499999999991" />
+          <ConnectorPoint PointX="4.270833333333333" PointY="4.34375" />
+          <ConnectorPoint PointX="5.572916666666667" PointY="4.3437499999999991" />
+          <ConnectorPoint PointX="5.739583333333333" PointY="4.34375" />
+          <ConnectorPoint PointX="5.875" PointY="4.34375" />
         </AssociationConnector>
         <AssociationConnector Association="GrabooDBModel.FK_UsersAllergies" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.625" PointY="3.7086393229166665" />
-          <ConnectorPoint PointX="3.3229166666666665" PointY="3.7086393229166661" />
-          <ConnectorPoint PointX="3.4895833333333335" PointY="3.7086393229166665" />
-          <ConnectorPoint PointX="4.104166666666667" PointY="3.7086393229166661" />
-          <ConnectorPoint PointX="4.270833333333333" PointY="3.7086393229166665" />
-          <ConnectorPoint PointX="5.572916666666667" PointY="3.7086393229166661" />
-          <ConnectorPoint PointX="5.739583333333333" PointY="3.7086393229166665" />
-          <ConnectorPoint PointX="7.21875" PointY="3.7086393229166665" />
-          <ConnectorPoint PointX="7.21875" PointY="4" />
+          <ConnectorPoint PointX="2.625" PointY="4.109375" />
+          <ConnectorPoint PointX="3.3229166666666665" PointY="4.1093749999999991" />
+          <ConnectorPoint PointX="3.4895833333333335" PointY="4.109375" />
+          <ConnectorPoint PointX="4.104166666666667" PointY="4.1093749999999991" />
+          <ConnectorPoint PointX="4.270833333333333" PointY="4.109375" />
+          <ConnectorPoint PointX="5.572916666666667" PointY="4.1093749999999991" />
+          <ConnectorPoint PointX="5.739583333333333" PointY="4.109375" />
+          <ConnectorPoint PointX="5.875" PointY="4.109375" />
         </AssociationConnector>
         <AssociationConnector Association="GrabooDBModel.FK_IngredientsNutritionElements" ManuallyRouted="false">
           <ConnectorPoint PointX="4.1875" PointY="2.4802864583333335" />
-          <ConnectorPoint PointX="4.1875" PointY="4.5" />
+          <ConnectorPoint PointX="4.1875" PointY="4.75" />
         </AssociationConnector>
         <AssociationConnector Association="GrabooDBModel.FK_ProductsNutritionElements" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.625" PointY="5.4901432291666667" />
-          <ConnectorPoint PointX="3.625" PointY="5.4901432291666667" />
+          <ConnectorPoint PointX="2.625" PointY="5.7401432291666667" />
+          <ConnectorPoint PointX="3.625" PointY="5.7401432291666667" />
         </AssociationConnector>
         <AssociationConnector Association="GrabooDBModel.FK_ProductsPurchases" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.625" PointY="6.8336393229166665" />
-          <ConnectorPoint PointX="5.65625" PointY="6.8336393229166665" />
+          <ConnectorPoint PointX="2.625" PointY="6.9586393229166665" />
+          <ConnectorPoint PointX="5.65625" PointY="6.9586393229166665" />
           <ConnectorPoint PointX="5.65625" PointY="3.3648893229166656" />
         </AssociationConnector>
         <AssociationConnector Association="GrabooDBModel.FK_UsersPurchases" ManuallyRouted="false">

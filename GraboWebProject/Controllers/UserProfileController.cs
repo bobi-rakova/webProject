@@ -53,6 +53,7 @@ namespace GraboWebProject.Controllers
         public ActionResult HealthProfile( int userId )
         {
             User targetUser = entities.Users.Where( x => x.Id == userId ).FirstOrDefault();
+            
             return View( targetUser );
         }
 
@@ -69,6 +70,20 @@ namespace GraboWebProject.Controllers
 
             return View( targetUser );
         }
+
+        public ActionResult GetIngredients()
+        {
+            var data = from ingredient in this.entities.Ingredients
+                       select new
+                       {
+                           Id = ingredient.Id,
+                           Name = ingredient.Name,
+                           Description = ingredient.Description
+                       };
+
+            return Json( data, JsonRequestBehavior.AllowGet );
+        }
+
 
     }
 }
