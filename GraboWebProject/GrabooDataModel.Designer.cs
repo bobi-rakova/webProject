@@ -14,6 +14,7 @@ using System.Data.EntityClient;
 using System.ComponentModel;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -838,6 +839,9 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "You must enter product name!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "Product Name" )]
         public global::System.String Name
         {
             get
@@ -862,6 +866,9 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "Don't leave the product description empty!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "Product Description" )]
         public global::System.String Description
         {
             get
@@ -910,6 +917,8 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        [Range( 0, 100, ErrorMessage = "The Carbohydrates must be between 0 and 100." )]
+        [Display( Name = "Carbohydrates" )]
         public Nullable<global::System.Int32> Carbohydrates
         {
             get
@@ -934,6 +943,8 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        [Range( 0, 100, ErrorMessage = "The Proteins must be between 0 and 100." )]
+        [Display( Name = "Proteins" )]
         public Nullable<global::System.Int32> Proteins
         {
             get
@@ -958,6 +969,8 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        [Range( 0, 100, ErrorMessage = "The Fat must be between 0 and 100." )]
+        [Display( Name = "Fat" )]
         public Nullable<global::System.Int32> Fat
         {
             get
@@ -1346,6 +1359,9 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The first name field is required!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "First Name" )]
         public global::System.String FirstName
         {
             get
@@ -1370,6 +1386,9 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The last name field is required!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "Last Name" )]
         public global::System.String LastName
         {
             get
@@ -1394,6 +1413,8 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        [Range( 0, 100, ErrorMessage = "You must enter a valid value for the age field." )]
+        [Display( Name = "Age", Description = "Your age" )]
         public Nullable<global::System.Int32> Age
         {
             get
@@ -1442,6 +1463,9 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The username field is required!" )]
+        [DataType( DataType.Text )]
+        [Display( Name = "Name" )]
         public global::System.String Username
         {
             get
@@ -1466,6 +1490,9 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The password field is required!" )]
+        [DataType( DataType.Password )]
+        [Display( Name = "Password" )]
         public global::System.String Password
         {
             get
@@ -1490,6 +1517,10 @@ namespace GraboWebProject
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        [Required( ErrorMessage = "The email field is required!" )]
+        [RegularExpression( "^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\\-+)|([A-Za-z0-9]+\\.+)|([A-Za-z0-9]+\\++))*[A-Za-z0-9]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6}$",
+           ErrorMessage = "You should enter a valid e-mail!" )]
+        [Display( Name = "Email" )]
         public global::System.String Email
         {
             get
