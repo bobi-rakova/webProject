@@ -15,7 +15,7 @@ namespace GraboWebProject.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return LogOn();
         }
 
         public ActionResult Create()
@@ -33,6 +33,11 @@ namespace GraboWebProject.Controllers
         }
 
         public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult LogOn()
         {
             return View();
         }
@@ -101,7 +106,7 @@ namespace GraboWebProject.Controllers
 
             // If we got this far, something failed, redisplay form
 //            return View(model);
-            return Index();
+            return View(model);
         }
 
     }
