@@ -23,7 +23,7 @@
                 @Html.LabelFor(model => model.Name)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.Name)
+                @Html.EditorFor( model => model.Name, new { style = "width: 500px;" } )
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
 

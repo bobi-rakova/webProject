@@ -54,6 +54,10 @@
     </fieldset>
 }
 
+
+         
+         <ul></ul>
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
@@ -62,12 +66,13 @@
 <script type="text/javascript">
 
     var url = '@Url.Action("GetProducts", "Statistics")';
-    
+
     $.getJSON(url,
            null,
            function (data) {
-               alert(data.name);
-           }
-       );
+               $.each(data, function (i, val) {
+                   $("ul").append("<li>" + val.Name + " - " + val.Producer + "</li>");
+               });
+           });
    
 </script>

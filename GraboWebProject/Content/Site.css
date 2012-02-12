@@ -362,7 +362,15 @@ div#title
 .text-box
 {
     width: 30em;
+    border-radius:10px; 
+    autocomplete="on";
 }
+
+    .text-box:hover 
+    {
+    background: #ff6;
+    border-radius:10px;
+    }
 
 .text-box.multi-line
 {
