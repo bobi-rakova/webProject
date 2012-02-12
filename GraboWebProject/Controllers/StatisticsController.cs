@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -38,10 +39,23 @@ namespace GraboWebProject.Controllers
         [HttpPost]
         public ActionResult AddProduct(Product product)
         {
+            HttpPostedFileWrapper picture = (HttpPostedFileWrapper)Request.Files.Get("pic");
+
+            int index = entities.Products.Count();
+            FileStream output = new FileStream(HomeController.CONTENT_DIR + picture.FileName, FileMode.Create);
+            Stream input = picture.InputStream;
+            byte[] buff = new byte[4096];
+            while (input.Read(buff, 0, 4096) > 0)
+            {
+                output.Write(buff, 0, 4096);
+            }
+
+            product.Image = picture.FileName;
             this.entities.AddToProducts(product);
             this.entities.SaveChanges();
 
             return View();
+
         }
 
         public ActionResult CreatePurchase()

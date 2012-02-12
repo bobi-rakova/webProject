@@ -10,6 +10,7 @@ namespace GraboWebProject.Controllers
 {
     public class HomeController : Controller
     {
+        public static string CONTENT_DIR = "C:/Users/HaNdyMaN/webProject/GraboWebProject/Content/";
         private int userId = 1;
         private GrabooDBEntities entities = new GrabooDBEntities();
 
