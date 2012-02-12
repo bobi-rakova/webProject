@@ -47,11 +47,21 @@ namespace GraboWebProject.Controllers
 
             return View();
         }
-
+                
         public ActionResult GetProducts()
         {
-            var data = new { name = "TestName" };
-            return Json( data );
+            var data = from product in this.entities.Products
+                       select new 
+                       {
+                           Name = product.Name,
+                           Producer = product.Producer,
+                           Carbohydrates = product.Carbohydrates,
+                           Fat = product.Fat,
+                           Proteins = product.Proteins,
+                           Description = product.Description                           
+                       };
+
+           return Json( data, JsonRequestBehavior.AllowGet );
         }
     }
 }

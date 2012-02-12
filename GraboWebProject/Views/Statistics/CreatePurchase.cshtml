@@ -61,9 +61,8 @@
 
 <script type="text/javascript">
 
-    alert("In Script");
-    var url = '@Html.ActionLink("GetProducts", "GetProducts")';
-    alert(url);
+    var url = '@Url.Action("GetProducts", "Statistics")';
+    
     $.getJSON(url,
            null,
            function (data) {
