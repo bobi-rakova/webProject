@@ -74,8 +74,17 @@
                     <div class="image">
                         @{
                             string args = "?selected=" + item.Name;
+                            string path = item.Image;
+                            if (path == null)
+                            {
+                                path = "/Content/burger.png";
+                            }
+                            else
+                            {
+                                path = "/Content/" + path;
+                            }                                
                         }
-                        @Html.ActionImage("SelectProduct", "Search", "/Content/burger.png", "", args)
+                        @Html.ActionImage("SelectProduct", "Search", path, "", args)
                     </div>
                     <div class="product-info">
                         <div class="product-name">
