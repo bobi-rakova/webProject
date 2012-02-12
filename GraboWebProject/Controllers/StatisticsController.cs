@@ -16,6 +16,16 @@ namespace GraboWebProject.Controllers
 
         public ActionResult Index()
         {
+            User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
+            HttpCookie usersCookie = null;
+            HttpCookieCollection cookies = System.Web.HttpContext.Current.Request.Cookies;
+            for (int i = 0; i < cookies.Count; i++)
+            {
+                if (cookies.Get(i).Name.Equals("coolCookie"))
+                {
+                    usersCookie = cookies.Get(i);
+                }
+            }
             var myPurchases = entities.Purchases.Where( x => x.User_Id == userId ).ToList();
             return View( myPurchases );
         }
