@@ -48,7 +48,7 @@ namespace GraboWebProject.Controllers
         public ActionResult HealthProfile( int userId )
         {
             User targetUser = entities.Users.Where( x => x.Id == userId ).FirstOrDefault();
-            
+
             return View( targetUser );
         }
 
@@ -59,6 +59,32 @@ namespace GraboWebProject.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult UpdateIngredients( int name, bool isChecked )
+        {
+            User targetUser = entities.Users.Where( x => x.Id == userId ).FirstOrDefault();
+            
+            if ( isChecked == true )
+            {
+                Allergy allergy = new Allergy()
+                {
+                    User_Id = targetUser.Id,
+                    Ingredient_Id = name
+                };
+
+                targetUser.Allergies.Add( allergy );
+            }
+            else
+            {
+                Allergy a = targetUser.Allergies.Where( x => x.Ingredient_Id == name ).FirstOrDefault();
+                targetUser.Allergies.Remove( a );
+            }
+
+            entities.SaveChanges();
+
+            return View();
+        } 
+
         public ActionResult AddAllergy( int userId )
         {
             User targetUser = entities.Users.Where( x => x.Id == userId ).FirstOrDefault();
@@ -68,12 +94,17 @@ namespace GraboWebProject.Controllers
 
         public ActionResult GetIngredients()
         {
+            User user = ( User )ControllerContext.HttpContext.Session["loggedInUser"];
+
+
+
             var data = from ingredient in this.entities.Ingredients
                        select new
                        {
                            Id = ingredient.Id,
                            Name = ingredient.Name,
-                           Description = ingredient.Description
+                           Description = ingredient.Description,
+                           IsAvailable = 0
                        };
 
             return Json( data, JsonRequestBehavior.AllowGet );

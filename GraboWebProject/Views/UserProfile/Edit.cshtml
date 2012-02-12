@@ -20,8 +20,6 @@
     @using ( Html.BeginForm() )
     {
         @Html.ValidationSummary( true )
-    <fieldset>
-        <legend>Personal Profile</legend>
  
             @Html.HiddenFor( model => model.Id )
 
@@ -40,7 +38,7 @@
             @Html.EditorFor( model => model.LastName )
             @Html.ValidationMessageFor( model => model.LastName )
         </div>
-
+         
         <div class="editor-label">
             @Html.LabelFor( model => model.Gender )
         </div>
@@ -60,7 +58,6 @@
         <p>
             <input type="submit" value="Save"  />
         </p>
-    </fieldset>
     }
 </section>
 

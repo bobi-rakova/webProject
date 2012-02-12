@@ -68,7 +68,7 @@ h2
 h3
 {
     font-size: 1.2em;
-}
+} 
 
 h4
 {
@@ -363,14 +363,14 @@ div#title
 .text-box
 {
     width: 30em;
-    border-radius:10px; 
+    border-radius:7px; 
     autocomplete="on";
 }
 
     .text-box:hover 
     {
     background: #ff6;
-    border-radius:10px;
+    border-radius:7px;
     }
 
 .text-box.multi-line
@@ -400,4 +400,15 @@ div#title
     background-color: #F4F4F4;
     height: 100%;
     min-height: 800px;
+}
+
+.boxstyle
+{	
+    width: 30em;
+    border-radius: 5px; 
+    border-width: 2px;
+    border-style: solid;
+    margin: 10px;
+    padding-bottom: 5px;
+    padding-left: 5px;
 }

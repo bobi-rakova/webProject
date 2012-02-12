@@ -15,27 +15,73 @@
 <section>
         <h2>Health Profile</h2>
         <p>Here you can define a list of your personal health preferences:</p>
-
+        
          @Html.ActionLink( "+ Add New", "AddAllergy", new { userId = Model.Id } )
 
-         <ul></ul>
+        @* <p>
+    @Html.ActionLink("Create New", "Create")
+
+    @using ( Html.BeginForm( "SearchIndex", "Movies", FormMethod.Get ) )
+    {   
+         <p>Genre: @Html.DropDownList( "movieGenre", "All" )  
+           Title: @Html.TextBox( "SearchString" )  
+         <input type="submit" value="Filter" /></p>
+    }
+</p>*@
+    <p>Here are the products I'm </p>
+            <ul id="leftPane" style="width: 50%; float:left; list-style-type: none; -webkit-padding-start: 0px; padding-left: 0px;"></ul>               
+            <ul id="rightPane" style=" width: 50%; float:left; list-style-type: none; -webkit-padding-start: 0px; padding-left: 0px;"></ul>
+
+            <div style="clear:both;"></div>
+         
 
     </section>
-
 <script type="text/javascript">
 
     var url = '@Url.Action( "GetIngredients", "UserProfile" )';
+    var postUrl = '@Url.Action( "UpdateIngredients", "UserProfile" )';
 
+    function postIngredient( id, isOnn )
+    {
+        alert(id + " - " + isOnn);
+        $.post(postUrl, { name: id, isChecked: isOnn });
+    }
+
+     
     $.getJSON(url,
            null,
            function (data) {
-               $.each(data, function (i,val) {
-                   $("ul").append("<li>" + val.Name + " - " + val.Description + "</li>");
+               $.each(data, function (i, val) {
+
+                   var isChecked = "false";
+                   if(val.IsAvailable != 0)
+                       isChecked = "true";
+
+                   var content = "<div class='boxstyle' style='background-color: #fff;'><h3 style='color: #428E43;'>" + val.Name + "</h3>" + val.Description +
+                   "<input id='addToProfile' type='checkbox' name='" + val.Id + "' value='1' checked='" + isChecked + "'/>Add To your Profile</div>";
+
+                   
+                   if (i % 3 == 0) {
+                       content = "<div class='boxstyle' style='background-color: #DBDBDB;'><h3 style='color: #428E43;'>" + val.Name + "</h3>" + val.Description +
+                       "<input type='checkbox' name='" + val.Id + "' value='1' checked='" + isChecked + "' />Add To your Profile</div>"; ;
+                   }
+                   if (i % 2 == 0) {
+                       $(rightPane).append("<li>" + content + "</li>");
+                   }
+                   else {
+                       $(leftPane).append("<li>" + content + "</li>");
+                   }
                });
+
+               $(addToProfile).change(function () {
+                   postIngredient(this.name, this.checked);
+               });
+
            });
+
+           
    
 </script>
-
-<div class="home" style = "margin-top:50px;">
-                @Html.ActionImage("Index", "Statistics", "/Content/home.png", "", "")
+<div class="home" style="margin-top: 50px;">
+    @Html.ActionImage( "Index", "Statistics", "/Content/home.png", "", "" )
 </div>
