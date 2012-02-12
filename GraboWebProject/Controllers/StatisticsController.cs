@@ -47,5 +47,11 @@ namespace GraboWebProject.Controllers
 
             return View();
         }
+
+        public ActionResult GetProducts()
+        {
+            var data = new { name = "TestName" };
+            return Json( data );
+        }
     }
 }
