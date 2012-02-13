@@ -30,7 +30,7 @@ namespace GraboWebProject.Controllers
 
         //
         // GET: /UserProfile/Edit
-        public ActionResult Edit( int userId )
+        public ActionResult Edit()
         {
             User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
             if (user != null)
