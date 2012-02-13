@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<GraboWebProject.Product>
-
 @{
     ViewBag.Title = "Find";
 }
-
-<h2>Find</h2>
+<h2>
+    Find</h2>
 <!doctype html>
 <html>
 <head>
@@ -17,25 +16,53 @@
         }
         .result
         {
-         margin-top: 100px;
+            margin-top: 100px;
         }
         .image
         {
-         display:inline;
-         width:260px;
+            display: inline;
+            width: 260px;
+        }
+        
+        .image img
+        {
+            width: 150px;
+            height: 150px;
         }
         
         .product-info
         {
-         display:inline;
-         float:right;
-         width: 400px;
-         position: relative;
-         top:0px;
+            display: inline;
+            float: right;
+            width: 400px;
+            position: relative;
+            top: 0px;
         }
+        
+        .product-info2
+        {
+            margin-top: 15px;
+            display: inline;
+            float: left;
+            width: 133px;
+            color: Green;
+            font-style: oblique;
+            position: relative;
+            top: 0px;
+            text-align:center;        }
+        
+        .product-name
+        {
+            font-style: italic;
+            font-size: x-large;
+            color: Red;
+        }
+        
         .product-statistics
         {
-         display:inline;
+            width: 400px;
+            height: 108px;
+            position: relative;
         }
         
         .main
@@ -43,79 +70,87 @@
             margin-left: auto;
             margin-right: auto;
             width: 750px;
-        }      
+        }
         .home
         {
-         float: right;
+            float: right;
         }
         .search-input
         {
             width: 400px;
         }
-        
+        #carbs
+        {
+            text-align: center;
+        }
+        #proteins
+        {
+            text-align: center;
+        }
+        #fat
+        {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    
-   
-        <div class="main">
-            <div class="home">
-                @Html.ActionImage("Index", "Statistics", "/Content/home.png", "", "")
-            </div>
-            <div id="search">
-                <form action="" method="post">
-                <input type="text" name="criteria" value="Product" class="search-input">
-                <input type="submit" value="Search">
-                </form>
-            </div>
-            @foreach (var item in Model)
+    <div class="main">
+        <div class="home">
+            @Html.ActionImage("Index", "Statistics", "/Content/home.png", "", "")
+        </div>
+        <div id="search">
+            <form action="" method="post">
+            <input type="text" name="criteria" value="Product" class="search-input">
+            <input type="submit" value="Search">
+            </form>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="result">
+                <div class="image">
+                    @{
+            string args = "?selected=" + item.Name;
+            string path = item.Image;
+            if (path == null)
             {
-                <div class="result">
-                    <div class="image">
-                        @{
-                            string args = "?selected=" + item.Name;
-                            string path = item.Image;
-                            if (path == null)
-                            {
-                                path = "/Content/burger.png";
-                            }
-                            else
-                            {
-                                path = "/Content/" + path;
-                            }                                
-                        }
-                        @Html.ActionImage("SelectProduct", "Search", path, "", args)
+                path = "/Content/burger.png";
+            }
+            else
+            {
+                path = "/Content/" + path;
+            }                                
+                    }
+                    @Html.ActionImage("SelectProduct", "Search", path, "", args)
+                </div>
+                <div class="product-info">
+                    <div class="product-name">
+                        @Html.DisplayFor(modelItem => item.Name)
                     </div>
-                    <div class="product-info">
-                        <div class="product-name">
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </div>
-                        <div class="product-descr">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </div>
-                        <div class="product-statistic">
-                            <div class="product-info">
-                                Carbohydrates
-                                <div id="carbs">
-                                    @Html.DisplayFor(modelItem => item.Carbohydrates)g
-                                </div>
+                    <div class="product-descr">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </div>
+                    <div class="product-statistic">
+                        <div class="product-info2">
+                            Carbohydrates
+                            <div id="carbs">
+                                @Html.DisplayFor(modelItem => item.Carbohydrates)g
                             </div>
-                            <div class="product-info">
-                                Proteins
-                                <div id="proteins">
-                                    @Html.DisplayFor(modelItem => item.Proteins)g
-                                </div>
+                        </div>
+                        <div class="product-info2">
+                            Proteins
+                            <div id="proteins">
+                                @Html.DisplayFor(modelItem => item.Proteins)g
                             </div>
-                            <div class="product-info">
-                                Fat
-                                <div id="fat" >
-                                    @Html.DisplayFor(modelItem => item.Fat)g
-                                </div>
+                        </div>
+                        <div class="product-info2">
+                            Fat
+                            <div id="fat">
+                                @Html.DisplayFor(modelItem => item.Fat)g
                             </div>
                         </div>
                     </div>
                 </div>
-            }
-        </div>
-   
+            </div>
+        }
+    </div>
 </body>
