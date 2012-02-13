@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Text;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using GraboWebProject.Models;
 
@@ -76,11 +78,15 @@ namespace GraboWebProject.Controllers
                         if (System.Web.HttpContext.Current.Response.Cookies["coolCookie"] == null)
                         {
                             HttpCookie cookie = new HttpCookie("coolCookie");
-                            cookie.Values.Add(model.UserName, model.Password);
+                            string encrypted = Convert.ToBase64String(Encoding.GetEncoding("Unicode").GetBytes(model.Password));
+//                            string decrypted =  Encoding.GetEncoding("Unicode").GetString(Convert.FromBase64String(encrypted));
+                            cookie.Values.Add(model.UserName, encrypted);
                             System.Web.HttpContext.Current.Response.Cookies.Add(cookie);
                         }
                         else
                         {
+                            string encrypted = Convert.ToBase64String(Encoding.GetEncoding("Unicode").GetBytes(model.Password));
+//                            string decrypted =  Encoding.GetEncoding("Unicode").GetString(Convert.FromBase64String(encrypted));
                             HttpCookie coolCookie = System.Web.HttpContext.Current.Response.Cookies["coolCookie"];
                             bool userPresent = false;
                             NameValueCollection nameValues = coolCookie.Values;
@@ -96,7 +102,7 @@ namespace GraboWebProject.Controllers
                             if (!userPresent)
                             {
                                 NameValueCollection userPass = new NameValueCollection();
-                                userPass.Set(model.UserName, model.Password);
+                                userPass.Set(model.UserName, encrypted);
                                 System.Web.HttpContext.Current.Response.Cookies["coolCookie"].Values.Add(userPass);
                             }
 
