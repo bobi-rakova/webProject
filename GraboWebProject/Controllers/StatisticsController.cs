@@ -27,8 +27,8 @@ namespace GraboWebProject.Controllers
                     usersCookie = cookies.Get(i);
                 }
             }
-            var myPurchases = entities.Purchases.Where( x => x.User_Id == userId ).ToList();
-            return View( myPurchases );
+            var myPurchases = entities.Purchases.Where(x => x.User_Id == userId).ToList();
+            return View(myPurchases);
         }
 
         public ActionResult AddProduct()
@@ -41,16 +41,33 @@ namespace GraboWebProject.Controllers
         {
             HttpPostedFileWrapper picture = (HttpPostedFileWrapper)Request.Files.Get("pic");
 
-            int index = entities.Products.Count();
-            FileStream output = new FileStream(HomeController.CONTENT_DIR + picture.FileName, FileMode.Create);
-            Stream input = picture.InputStream;
-            byte[] buff = new byte[4096];
-            while (input.Read(buff, 0, 4096) > 0)
+            string picName = picture.FileName;
+            if(IsPresent(picName, HomeController.CONTENT_DIR))
             {
-                output.Write(buff, 0, 4096);
+                string extension = picName.Substring(picName.LastIndexOf('.'));
+                string name = picName.Substring(0, picName.LastIndexOf('.'));
+                int index = 2;
+                while(IsPresent(name + index + extension, HomeController.CONTENT_DIR))
+                {
+                    index++;
+                }
+                picName = name + index + extension;
             }
 
-            product.Image = picture.FileName;
+            using (FileStream output = new FileStream(HomeController.CONTENT_DIR + picName, FileMode.Create))
+            {
+                using(Stream input = picture.InputStream )
+                {
+                    byte[] buff = new byte[4096];
+                    int n;
+                    while ((n = input.Read(buff, 0, 4096)) > 0)
+                    {
+                        output.Write(buff, 0, n);
+                    }
+                }
+            }
+
+            product.Image = picName;
             this.entities.AddToProducts(product);
             this.entities.SaveChanges();
 
@@ -58,26 +75,39 @@ namespace GraboWebProject.Controllers
 
         }
 
+        public bool IsPresent(string file, string dir)
+        {
+            DirectoryInfo di = new DirectoryInfo(dir);
+            foreach (FileInfo fi in di.GetFiles())
+            {
+                if (fi.Name.Equals(file))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public ActionResult CreatePurchase()
         {
             return View();
         }
-          
+
         [HttpPost]
-        public ActionResult CreatePurchase( Purchase purchase )
+        public ActionResult CreatePurchase(Purchase purchase)
         {
             User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
             purchase.User_Id = user.Id;
-            this.entities.AddToPurchases( purchase );
+            this.entities.AddToPurchases(purchase);
             this.entities.SaveChanges();
 
             return View();
         }
-                
+
         public ActionResult GetProducts()
         {
             var data = from product in this.entities.Products
-                       select new 
+                       select new
                        {
                            Id = product.Id,
                            Name = product.Name,
@@ -85,10 +115,10 @@ namespace GraboWebProject.Controllers
                            Carbohydrates = product.Carbohydrates,
                            Fat = product.Fat,
                            Proteins = product.Proteins,
-                           Description = product.Description                           
+                           Description = product.Description
                        };
 
-           return Json( data, JsonRequestBehavior.AllowGet );
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
 }
