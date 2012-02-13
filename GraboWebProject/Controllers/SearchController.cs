@@ -16,26 +16,50 @@ namespace GraboWebProject.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
+            if (user != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
         public ActionResult Find(FormCollection values)
         {
-            string criteria = values["criteria"];
+            User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
+            if (user != null)
+            {
+                string criteria = values["criteria"];
 
-            foundProducts = entities.Products.Where(x => x.Name.Contains(criteria)).ToList();
+                foundProducts = entities.Products.Where(x => x.Name.Contains(criteria)).ToList();
 
-            return View(foundProducts);
+                return View(foundProducts);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult SelectProduct()
         {
-            string selected = (string)Request["selected"];
+            User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
+            if (user != null)
+            {
+                string selected = (string)Request["selected"];
 
-            var foundProduct = entities.Products.Where(x => x.Name == selected).ToList().ElementAt(0);
+                var foundProduct = entities.Products.Where(x => x.Name == selected).ToList().ElementAt(0);
 
-            return View(foundProduct);
+                return View(foundProduct);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
     }

@@ -18,60 +18,87 @@ namespace GraboWebProject.Controllers
         public ActionResult Index()
         {
             User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
-            HttpCookie usersCookie = null;
-            HttpCookieCollection cookies = System.Web.HttpContext.Current.Request.Cookies;
-            for (int i = 0; i < cookies.Count; i++)
+            if (user != null)
             {
-                if (cookies.Get(i).Name.Equals("coolCookie"))
+                HttpCookie usersCookie = null;
+                HttpCookieCollection cookies = System.Web.HttpContext.Current.Request.Cookies;
+                for (int i = 0; i < cookies.Count; i++)
                 {
-                    usersCookie = cookies.Get(i);
+                    if (cookies.Get(i).Name.Equals("coolCookie"))
+                    {
+                        usersCookie = cookies.Get(i);
+                    }
                 }
+                var myPurchases = entities.Purchases.Where(x => x.User_Id == userId).ToList();
+                return View(myPurchases);
             }
-            var myPurchases = entities.Purchases.Where(x => x.User_Id == userId).ToList();
-            return View(myPurchases);
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult AddProduct()
         {
-            return View();
+            User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
+            if (user != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
         public ActionResult AddProduct(Product product)
         {
-            HttpPostedFileWrapper picture = (HttpPostedFileWrapper)Request.Files.Get("pic");
-
-            string picName = picture.FileName;
-            if(IsPresent(picName, HomeController.CONTENT_DIR))
+            User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
+            if (user != null)
             {
-                string extension = picName.Substring(picName.LastIndexOf('.'));
-                string name = picName.Substring(0, picName.LastIndexOf('.'));
-                int index = 2;
-                while(IsPresent(name + index + extension, HomeController.CONTENT_DIR))
-                {
-                    index++;
-                }
-                picName = name + index + extension;
-            }
+                HttpPostedFileWrapper picture = (HttpPostedFileWrapper)Request.Files.Get("pic");
 
-            using (FileStream output = new FileStream(HomeController.CONTENT_DIR + picName, FileMode.Create))
-            {
-                using(Stream input = picture.InputStream )
+                if (picture != null && picture.FileName.Length > 0 && picture.InputStream.Length < 10485760)
                 {
-                    byte[] buff = new byte[4096];
-                    int n;
-                    while ((n = input.Read(buff, 0, 4096)) > 0)
+                    string picName = picture.FileName;
+                    string extension = picName.Substring(picName.LastIndexOf('.'));
+
+                    if (IsPresent(picName, HomeController.CONTENT_DIR))
                     {
-                        output.Write(buff, 0, n);
+                        string name = picName.Substring(0, picName.LastIndexOf('.'));
+                        int index = 2;
+                        while (IsPresent(name + index + extension, HomeController.CONTENT_DIR))
+                        {
+                            index++;
+                        }
+                        picName = name + index + extension;
                     }
+
+                    using (FileStream output = new FileStream(HomeController.CONTENT_DIR + picName, FileMode.Create))
+                    {
+                        using (Stream input = picture.InputStream)
+                        {
+                            byte[] buff = new byte[4096];
+                            int n;
+                            while ((n = input.Read(buff, 0, 4096)) > 0)
+                            {
+                                output.Write(buff, 0, n);
+                            }
+                        }
+                    }
+
+                    product.Image = picName;
                 }
+                this.entities.AddToProducts(product);
+                this.entities.SaveChanges();
+
+                return View();
             }
-
-            product.Image = picName;
-            this.entities.AddToProducts(product);
-            this.entities.SaveChanges();
-
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
         }
 
@@ -90,35 +117,58 @@ namespace GraboWebProject.Controllers
 
         public ActionResult CreatePurchase()
         {
-            return View();
+            User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
+            if (user != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
         public ActionResult CreatePurchase(Purchase purchase)
         {
             User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
-            purchase.User_Id = user.Id;
-            this.entities.AddToPurchases(purchase);
-            this.entities.SaveChanges();
+            if (user != null)
+            {
+                purchase.User_Id = user.Id;
+                this.entities.AddToPurchases(purchase);
+                this.entities.SaveChanges();
 
-            return View();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult GetProducts()
         {
-            var data = from product in this.entities.Products
-                       select new
-                       {
-                           Id = product.Id,
-                           Name = product.Name,
-                           Producer = product.Producer,
-                           Carbohydrates = product.Carbohydrates,
-                           Fat = product.Fat,
-                           Proteins = product.Proteins,
-                           Description = product.Description
-                       };
+            User user = (User)ControllerContext.HttpContext.Session["loggedInUser"];
+            if (user != null)
+            {
+                var data = from product in this.entities.Products
+                           select new
+                           {
+                               Id = product.Id,
+                               Name = product.Name,
+                               Producer = product.Producer,
+                               Carbohydrates = product.Carbohydrates,
+                               Fat = product.Fat,
+                               Proteins = product.Proteins,
+                               Description = product.Description
+                           };
 
-            return Json(data, JsonRequestBehavior.AllowGet);
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

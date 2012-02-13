@@ -99,6 +99,8 @@ namespace GraboWebProject.Controllers
         {
             FormsAuthentication.SignOut();
 
+            ControllerContext.HttpContext.Session["loggedInUser"] = null;
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -107,6 +109,8 @@ namespace GraboWebProject.Controllers
 
         public ActionResult Register()
         {
+            ControllerContext.HttpContext.Session["loggedInUser"] = null;
+
             return RedirectToAction("Create", "Home");
         }
 
